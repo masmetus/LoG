@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Роли</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+    <a th:href="@{/Index}" class="control control_home">
+
+        <img src="Logo.png" alt="Home" width="100" height="40">
+    </a>
+
+
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+
+        <li class="nav-item active">
+            <a  th:href="@{/Rooms}" class="btn btn-outline-primary ml-2 mr-2" role="button">Кабинеты<span class="sr-only"></span></a>
+        </li>
+
+        <li class="nav-item active">
+            <a th:href="@{/Request}" class="btn btn-outline-primary ml-2 mr-2" role="button">Заявки<span class="sr-only"></span></a>
+        </li>
+
+        <li class="nav-item active">
+            <a th:href="@{/users}" class="btn btn-outline-primary ml-2 mr-2" role="button">Пользователи<span class="sr-only"></span></a>
+        </li>
+
+        <li class="nav-item active">
+            <a th:href="@{/Roles}" class="btn btn-outline-primary ml-2 mr-2" role="button">Роли<span class="sr-only"></span></button></a>
+        </li>
+
+    </ul>
+
+    <div>
+        <form sec:authorize="isAuthenticated()" class="form-inline" th:action="@{/logout}" method="post">
+            <button type="submit" class="btn btn-outline-primary mr-2" >Выйти</button>
+        </form>
+    </div>
+</nav>
+<div sec:authorize="hasAuthority('Admin')" class="container text-center">
+    <div>
+        <h2>Роли</h2>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>id</th>
+                <th>Название</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="role: ${roles}">
+                <td th:text="${role.id}"></td>
+                <td th:text="${role.name}"></td>
+                <td><a th:href="@{role-delete/{id}(id=${role.id})}" class="btn btn-outline-primary ml-2 mr-2" role="button">Удалить</a></tr>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+<p><a href="/role-create">Создать новую роль</a></p>
+</div>
+
+
+</body>
+</html>
