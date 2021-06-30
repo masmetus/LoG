@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ru" xmlns:th="http://thymeleaf.org"
+      xmlns:sec="http://thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-file=no">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>GuLog</title>
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+    <a th:href="@{/Index}" class="control control_home">
+
+        <img src="Logo.png" alt="Home" width="100" height="40">
+    </a>
+
+
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+
+        <li class="nav-item active">
+            <a th:href="@{/Request}" class="btn btn-outline-primary ml-2 mr-2" role="button">Заявки<span class="sr-only"></span></button></a>
+        </li>
+
+        <li class="nav-item active">
+            <a th:href="@{/user-list}" class="btn btn-outline-primary ml-2 mr-2" role="button">Заявки<span class="sr-only"></span></button></a>
+        </li>
+
+        <li class="nav-item active">
+            <a th:href="@{/Roles}" class="btn btn-outline-primary ml-2 mr-2" role="button">Заявки<span class="sr-only"></span></button></a>
+        </li>
+
+    </ul>
+
+    <div>
+        <form sec:authorize="isAuthenticated()" class="form-inline" th:action="@{/logout}" method="post">
+
+            <button type="submit" class="btn btn-outline-primary mr-2" >Выйти</button>
+
+        </form>
+    </div>
+
+
+</nav>
+
+<div class="container mt-5">
+    <h2 class="text-center">Кабинеты</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Номер кабинета</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="room: ${rooms}">
+            <td th:text="${room.RoomNumber}"></td>
+            <td><a th:href="@{room-details/{id}(id=${room.id})}" class="btn btn-outline-primary ml-1 mr-1" role="button">Подробнее</a></td>
+            <td><a th:href="@{room-update/{id}(id=${room.id})}" class="btn btn-outline-primary ml-1 mr-1" role="button">Редактировать</a></td>
+            <td><a th:href="@{room-delete/{id}(id=${room.id})}" class="btn btn-danger ml-1 mr-1" role="button">Удалить</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div class="text-center"><a href="/room-create" class="btn btn-outline-primary ml-2 mr-2" role="button">Создать новый кабинет</a></div>
+
+
+
+
+</body>
+</html>

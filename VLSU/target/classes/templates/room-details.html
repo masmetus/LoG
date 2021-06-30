@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://thymeleaf.org"
+      xmlns:sec="http://thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-file=no">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>[[${pageTitle}]]</title>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+    <a href="@{/Index}" class="control control_home">
+
+        <img src="Logo.png" alt="Home" width="100" height="40">
+    </a>
+
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+
+        <li class="nav-item active">
+            <a  th:href="@{/Rooms}" class="btn btn-outline-primary ml-2 mr-2" role="button">Кабинеты<span class="sr-only"></span></a>
+        </li>
+
+        <li class="nav-item active">
+            <a th:href="@{/Request}" class="btn btn-outline-primary ml-2 mr-2" role="button">Заявки<span class="sr-only"></span></a>
+        </li>
+
+        <li class="nav-item active">
+            <a th:href="@{/users}" class="btn btn-outline-primary ml-2 mr-2" role="button">Пользователи<span class="sr-only"></span></a>
+        </li>
+
+        <li class="nav-item active">
+            <a th:href="@{/Roles}" class="btn btn-outline-primary ml-2 mr-2" role="button">Роли<span class="sr-only"></span></button></a>
+        </li>
+
+    </ul>
+</nav>
+
+<!-- <div th:unless="${user.id == null}"></div> -->
+
+<div sec:authorize="hasAuthority('Admin')" class="container text-center">
+    <div>
+        <h2>Рабочие места</h2>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>id</th>
+                <th>Номер рабочего места</th>
+                <th>Номер кабинета</th>
+                <th>Инв. номер компьютера</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="workplaces: ${workplaceList}">
+                <td th:text="${workplaces.id}"></td>
+                <td th:text="${workplaces.Number}"></td>
+                <td th:text="${workplaces.idRoom}"></td>
+                <td th:text="${workplaces.id_computer}"></td>
+                <td><a th:href="@{workplaces-delete/{id}(id=${workplaces.id})}" class="btn btn-outline-primary ml-2 mr-2" role="button">Удалить</a></tr>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+</div>
+</body>
+</html>
