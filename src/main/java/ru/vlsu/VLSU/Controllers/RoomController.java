@@ -7,9 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import ru.vlsu.VLSU.persist.Room;
-import ru.vlsu.VLSU.persist.RoomRepository;
-import ru.vlsu.VLSU.persist.User;
+import ru.vlsu.VLSU.persist.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,11 +17,15 @@ public class RoomController {
 
     @Autowired
     private RoomRepository roomRepository;
+    @Autowired
+    private WorkplaceRepository workplaceRepository;
+    @Autowired
+    private ComputerRepository computerRepository;
 
 
     @GetMapping("/Rooms")
     public String roomPage (Model model){
-        Iterable<Room> rooms = roomRepository.findAll();
+        List<Room> rooms = roomRepository.findAll();
         model.addAttribute("rooms", rooms);
         return "rooms";
     }
@@ -40,13 +42,13 @@ public class RoomController {
     }
 
     @GetMapping("room-delete/{id}")
-    public String deleteRoom(@PathVariable("id") Long id){
+    public String deleteRoom(@PathVariable("id") Integer id){
         roomRepository.deleteById(id);
         return "redirect:/Rooms";
     }
 
     @GetMapping("room-update/{id}")
-    public String roomUpdateForm(@PathVariable("id") Long id, Model model){
+    public String roomUpdateForm(@PathVariable("id") Integer id, Model model){
         Room rooms = roomRepository.findById(id).get();
         model.addAttribute("room", rooms);
         return "room-update";
@@ -59,7 +61,11 @@ public class RoomController {
     }
 
     @GetMapping("room-details/{id}")
-    public String roomDetails(@PathVariable("id") Long id, Model model){
-        return "/room-details";
+    public String roomDetails(@PathVariable("id") Integer id, Model model){
+        List<Workplace> workplaces = roomRepository.findById(id).get().getWorkplaces();
+        List<Computer> computers = computerRepository.findAll();
+        model.addAttribute("workplaces", workplaces);
+        model.addAttribute("computer", computers);
+        return "room-details";
     }
 }

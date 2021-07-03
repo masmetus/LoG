@@ -1,6 +1,8 @@
 package ru.vlsu.VLSU.persist;
 
 import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "room")
@@ -8,18 +10,29 @@ public class Room {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     private String RoomNumber;
 
-    private Integer workplace_id;
+    @OneToMany(mappedBy = "room")
+    private List<Request> requests;
 
+    @OneToMany(mappedBy = "room")
+    private List<Workplace> workplaces;
 
-    public Long getId() {
+    public List<Workplace> getWorkplaces() {
+        return workplaces;
+    }
+
+    public void setWorkplaces(List<Workplace> workplaces) {
+        this.workplaces = workplaces;
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

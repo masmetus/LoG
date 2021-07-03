@@ -51,18 +51,24 @@
     <table class="table">
         <thead>
         <tr>
-            <th>Номер кабинета</th>
+            <th>id</th>
+            <th>Инв. номер компьютера</th>
+            <th>Тип компьютера</th>
+            <th>Статус работы</th>
             <th></th>
             <th></th>
             <th></th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="room: ${rooms}">
-            <td th:text="${room.RoomNumber}"></td>
-            <td><a th:href="@{room-details/{id}(id=${room.id})}" class="btn btn-outline-primary ml-1 mr-1" role="button">Подробнее</a></td>
-            <td><a th:href="@{room-update/{id}(id=${room.id})}" class="btn btn-outline-primary ml-1 mr-1" role="button">Редактировать</a></td>
-            <td><a th:href="@{room-delete/{id}(id=${room.id})}" class="btn btn-danger ml-1 mr-1" role="button">Удалить</a></td>
+        <tr th:each="computer: ${computers}">
+            <td th:text="${computer.id}"></td>
+            <td th:text="${computer.INV}"></td>
+            <td th:text="${computer.ID_computerType}"></td>
+            <td th:text="${computer.isWorking}"></td>
+            <td><a th:href="@{computer-details/{id}(id=${computer.id})}" class="btn btn-outline-primary ml-1 mr-1" role="button">Подробнее</a></td>
+            <td><a th:href="@{computer-update/{id}(id=${computer.id})}" class="btn btn-outline-primary ml-1 mr-1" role="button">Редактировать</a></td>
+            <td><a th:href="@{computer-delete/{id}(id=${computer.id})}" class="btn btn-danger ml-1 mr-1" role="button">Удалить</a></td>
         </tr>
         </tbody>
     </table>

@@ -43,26 +43,38 @@
 
 <div sec:authorize="hasAuthority('Admin')" class="container text-center">
     <div class="container mt-5">
-        <h2>Рабочие места</h2>
+        <h2>Установленное ПО</h2>
         <table class="table">
             <thead>
             <tr>
                 <th>id</th>
-                <th>Номер рабочего места</th>
+                <th>Название программы</th>
                 <th>Инв. номер компьютера</th>
+                <th>Дата начала действия лицензии</th>
+                <th>Дата конца действия лицензии</th>
+                <th>Дата установки</th>
+                <th>Тип лицензии</th>
+                <th>Статус</th>
+                <th>Номер кабинета</th>
                 <th></th>
                 <th></th>
                 <th></th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="workplaces: ${workplaces}">
-                <td th:text="${workplaces.id}"></td>
-                <td th:text="${workplaces.Number}"></td>
-                <td th:text="${workplaces.computer.getINV()}"></td>
-                <td><a th:href="@{computer-details/{id}(id=${workplaces.id})}" class="btn btn-outline-primary ml-1 mr-1" role="button">Подробнее</a></td>
-                <td><a th:href="@{workplaces-update/{id}(id=${workplaces.id})}" class="btn btn-outline-primary ml-1 mr-1" role="button">Редактировать</a></td>
-                <td><a th:href="@{workplaces-delete/{id}(id=${workplaces.id})}" class="btn btn-danger ml-1 mr-1" role="button">Удалить</a></tr>
+            <tr th:each="installedsoftwares: ${installedsoftwares}">
+                <td th:text="${installedsoftwares.id}"></td>
+                <td th:text="${installedsoftwares.software.getName()}"></td>
+                <td th:text="${installedsoftwares.computer.getINV()}"></td>
+                <td th:text="${installedsoftwares.LicenseStart}"></td>
+                <td th:text="${installedsoftwares.LicenseEnd}"></td>
+                <td th:text="${installedsoftwares.InstallationDate}"></td>
+                <td th:text="${installedsoftwares.TypeLicense_ID}"></td>
+                <td th:text="${installedsoftwares.WorkStatus}"></td>
+                <td th:text="${installedsoftwares.ID_room}"></td>
+                <td><a th:href="@{installedsoftwares-details/{id}(id=${installedsoftwares.id})}" class="btn btn-outline-primary ml-1 mr-1" role="button">Подробнее</a></td>
+                <td><a th:href="@{installedsoftwares-update/{id}(id=${installedsoftwares.id})}" class="btn btn-outline-primary ml-1 mr-1" role="button">Редактировать</a></td>
+                <td><a th:href="@{installedsoftwares-delete/{id}(id=${installedsoftwares.id})}" class="btn btn-danger ml-1 mr-1" role="button">Удалить</a></tr>
             </tr>
             </tbody>
         </table>

@@ -19,6 +19,7 @@ public class LogControllers {
     private UserRepository userRepository;
     private RoleRepository roleRepository;
 
+    @Autowired
     public LogControllers(UserRepository userRepository, RoleRepository roleRepository) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
@@ -29,10 +30,6 @@ public class LogControllers {
         return "Index";
     }
 
-    @GetMapping("/Request")
-    public String requestPage(){
-        return "Request";
-    }
 
     @GetMapping("/users")
     public String UsersPage(Model model, Role role){

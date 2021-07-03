@@ -12,9 +12,13 @@ public class Workplace {
 
     private String Number;
 
-    private Integer idRoom;
+    @ManyToOne
+    @JoinColumn(name = "id_room")
+    private Room room;
 
-    private Integer id_computer;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "computer_id")
+    private Computer computer;
 
     private Integer id_Monitor;
 
@@ -37,20 +41,20 @@ public class Workplace {
         Number = number;
     }
 
-    public Integer getIdRoom() {
-        return idRoom;
+    public Room getRoom() {
+        return room;
     }
 
-    public void setIdRoom(Integer idRoom) {
-        this.idRoom = idRoom;
+    public void setRoom(Room room) {
+        this.room = room;
     }
 
-    public Integer getId_computer() {
-        return id_computer;
+    public Computer getComputer() {
+        return computer;
     }
 
-    public void setId_computer(Integer id_computer) {
-        this.id_computer = id_computer;
+    public void setComputer(Computer computer) {
+        this.computer = computer;
     }
 
     public Integer getId_Monitor() {
