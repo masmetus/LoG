@@ -47,13 +47,12 @@
         <table class="table">
             <thead>
             <tr>
-                <th>id</th>
                 <th>Номер кабинета</th>
                 <th>Инв. номер компьютера</th>
-                <th>Название программы</th>
+                <th>Кто создал</th>
+                <th>Тема заявки</th>
                 <th>Статус заявки</th>
                 <th>Дата открытия заявки</th>
-                <th>Описание проблемы</th>
                 <th>Дата закрытия заявки</th>
                 <th></th>
                 <th></th>
@@ -62,14 +61,15 @@
             </thead>
             <tbody>
             <tr th:each="requests: ${requestList}">
-                <td th:text="${requests.id}"></td>
                 <td th:text="${requests.room.getRoomNumber()}"></td>
                 <td th:text="${requests.ID_Computer}"></td>
-                <td th:text="${requests.software.getName()}"></td>
+                <td th:text="${requests.user.getFullName()}"></td>
+                <td th:text="${requests.title_of_the_problem}"></td>
                 <td th:text="${requests.request_status}"></td>
                 <td th:text="${requests.application_date}"></td>
-                <td th:text="${requests.description_of_the_problem}"></td>
                 <td th:text="${requests.application_closing_date}"></td>
+                <td><a th:href="@{request-update/{id}(id=${requests.id})}" class="btn btn-outline-primary ml-2 mr-2" role="button">Закрыть заявку</a></td>
+                <td><a th:href="@{request-delete/{id}(id=${requests.id})}" class="btn btn-outline-primary ml-2 mr-2" role="button">Удалить</a></td>
             </tr>
             </tbody>
         </table>

@@ -29,6 +29,7 @@ public class Installedsoftware {
 
     private Date InstallationDate;
 
+    @Column(name = "work_status")
     private boolean WorkStatus;
 
     private Integer ID_room;
@@ -92,7 +93,7 @@ public class Installedsoftware {
         this.ID_enginere = ID_enginere;
     }
 
-    public boolean isWorkStatus() {
+    public boolean getWorkStatus() {
         return WorkStatus;
     }
 

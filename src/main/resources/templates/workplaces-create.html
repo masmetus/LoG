@@ -47,7 +47,7 @@
     <div class="text-center"><h2>Добавление рабочего места</h2>
     </div>
 
-        <form th:action="@{/workplaces-create}" th:object="${workplace}" method="post">
+        <form th:action="@{/room-details/workplaces-create/{id}(id=${roomNumber})}" th:object="${workplace}" method="post">
 
             <div class="m-3">
 
@@ -64,21 +64,15 @@
 
                 </div>
 
-                <div class="form-group row">
+                <div class="form-group row" >
 
                     <label class="col-form-label col-sm-4">Кабинет:</label>
 
                     <div class="col-sm-8">
 
-                        <select th:filed="*{room}" class="form-control" required>
 
-                            <th:block th:each="rooms : ${room}">
+                        <input type="text"  th:value="${roomNumber}" class="form-control" />
 
-                                <option th:text="${rooms.getRoomNumber()}" th:value="${rooms.getId()}"></option>
-
-                            </th:block>
-
-                        </select>
 
                     </div>
 
@@ -90,17 +84,17 @@
 
                     <div class="col-sm-8">
 
-                        <select th:filed="*{computer}" class="form-control" required>
+                         <select id = "computer" th:field="*{computer_id}" class="form-control" required>
 
-                            <th:block th:each="computers : ${computer}">
+                           <th:block th:each="computer : ${computers}">
 
-                                <option th:text="${computers.getINV()}" th:value="${computers.getId()}"></option>
+                               <option th:value="${computer.getId()}"  th:text="${computer.getINV() }"></option>
 
-                            </th:block>
+                           </th:block>
 
-                        </select>
+                       </select>
 
-                    </div>
+                   </div>
 
                 </div>
 

@@ -25,11 +25,44 @@ public class Request {
 
     private Date application_date;
 
-    private String description_of_the_problem;
+    private String title_of_the_problem;
 
     private Date application_closing_date;
 
+    private Integer id_who_close;
+
+    @ManyToOne
+    @JoinColumn(name = "ID_user")
+    private User user;
+
+    private String description_of_the_problem;
+
+
     public Request() {
+    }
+
+    public Integer getId_who_close() {
+        return id_who_close;
+    }
+
+    public void setId_who_close(Integer id_who_close) {
+        this.id_who_close = id_who_close;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public String getDescription_of_the_problem() {
+        return description_of_the_problem;
+    }
+
+    public void setDescription_of_the_problem(String description_of_the_problem) {
+        this.description_of_the_problem = description_of_the_problem;
     }
 
     public Integer getId() {
@@ -80,12 +113,12 @@ public class Request {
         this.application_date = application_date;
     }
 
-    public String getDescription_of_the_problem() {
-        return description_of_the_problem;
+    public String getTitle_of_the_problem() {
+        return title_of_the_problem;
     }
 
-    public void setDescription_of_the_problem(String description_of_the_problem) {
-        this.description_of_the_problem = description_of_the_problem;
+    public void setTitle_of_the_problem(String title_of_the_problem) {
+        this.title_of_the_problem = title_of_the_problem;
     }
 
     public Date getApplication_closing_date() {
@@ -95,4 +128,6 @@ public class Request {
     public void setApplication_closing_date(Date application_closing_date) {
         this.application_closing_date = application_closing_date;
     }
+
+
 }

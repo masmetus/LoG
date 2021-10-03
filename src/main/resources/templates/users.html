@@ -61,7 +61,7 @@
                 <th>Фамилия</th>
                 <th>Почта</th>
                 <th>Номер телефона</th>
-                <th>Роль</th>
+                <th>Полное имя</th>
                 <th></th>
                 <th></th>
             </tr>
@@ -73,7 +73,7 @@
                 <td th:text="${user.lastName}"></td>
                 <td th:text="${user.email}"></td>
                 <td th:text="${user.phoneNumber}"></td>
-                <td th:text="*{user.roles}"></td>
+                <td th:text="${user.getFullName()}"></td>
                 <td><a th:href="@{user-update/{id}(id=${user.id})}" class="btn btn-outline-primary ml-2 mr-2" role="button">Редактировать</a></td>
                 <td><a th:href="@{user-delete/{id}(id=${user.id})}" class="btn btn-outline-primary ml-2 mr-2" role="button">Удалить</a></td>
             </tr>

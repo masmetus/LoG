@@ -29,13 +29,13 @@ public class WorkplaceController {
         return "workplaceList";
     }
 
-    @GetMapping("/workplaces-create")
-    public String workplacesAddForm(Workplace workplace, Model model){
+    @GetMapping("/workplaces-create/{id}")
+    public String workplacesAddForm(Workplace workplace,Computer computer, Model model){
         List<Room> rooms = roomRepository.findAll();
         List<Computer> computers = computerRepository.findAll();
+        //Workplace workplace = new Workplace();
         model.addAttribute("room", rooms);
         model.addAttribute("computer", computers);
-        model.addAttribute("workplace", workplace);
         return "workplaces-create";
     }
 

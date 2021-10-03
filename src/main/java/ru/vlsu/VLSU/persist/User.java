@@ -2,6 +2,8 @@ package ru.vlsu.VLSU.persist;
 
 import javax.persistence.*;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 @Entity
@@ -33,11 +35,25 @@ public class User {
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
 
+    private String fullName;
+
     public User(){
     }
 
     public String getFirstName() {
         return firstName;
+    }
+
+    public String getFullName()
+    {
+        return Stream.of(firstName, lastName)
+                .filter(x -> x != null && !x.isEmpty())
+                .collect(Collectors.joining(" "));
+    }
+
+    public void setFullName(String fullName, String firstName, String lastName)
+    {
+        this.fullName = this.firstName + " " + this.lastName;
     }
 
     public void setFirstName(String firstName) {
@@ -98,10 +114,11 @@ public class User {
         this.roles = roles;
     }
 
-    public User(String firstName, String lastName, String email, String phoneNumber) {
+    public User(String firstName, String lastName, String email, String phoneNumber, String fullName) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
+        this.fullName = fullName;
     }
 }

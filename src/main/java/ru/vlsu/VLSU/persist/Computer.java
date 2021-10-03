@@ -12,7 +12,7 @@ public class Computer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String INV;
+    private Integer INV;
 
     @OneToOne(mappedBy = "computer")
     private Workplace workplace;
@@ -45,11 +45,11 @@ public class Computer {
         this.id = id;
     }
 
-    public String getINV() {
+    public Integer getINV() {
         return INV;
     }
 
-    public void setINV(String INV) {
+        public void setINV(Integer INV) {
         this.INV = INV;
     }
 

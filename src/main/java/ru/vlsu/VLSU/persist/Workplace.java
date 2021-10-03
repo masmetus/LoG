@@ -20,9 +20,20 @@ public class Workplace {
     @JoinColumn(name = "computer_id")
     private Computer computer;
 
+    @Column(insertable = false, updatable = false)
+    private Integer computer_id;
+
     private Integer id_Monitor;
 
     public Workplace() {
+    }
+
+    public Integer getComputer_id() {
+        return computer_id;
+    }
+
+    public void setComputer_id(Integer computer_id) {
+        this.computer_id = computer_id;
     }
 
     public Integer getId() {

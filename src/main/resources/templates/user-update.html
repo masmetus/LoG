@@ -73,7 +73,7 @@
 
                 <div class="col-sm-8">
 
-                    <input type="text" name="firstName" class="form-control"/>
+                    <input type="text" id ="firstName" th:field="*{firstName}" class="form-control"/>
 
                 </div>
 
@@ -86,7 +86,7 @@
 
                 <div class="col-sm-8">
 
-                    <input type="text" name="lastName"  class="form-control"/>
+                    <input type="text" id ="lastName" th:field="*{lastName}" class="form-control"/>
 
                 </div>
 
@@ -99,7 +99,7 @@
 
                 <div class="col-sm-8">
 
-                    <input type="text" name="phoneNumber" class="form-control"/>
+                    <input type="text" id ="phoneNumber" th:field="*{phoneNumber}" class="form-control"/>
 
                 </div>
 
@@ -112,7 +112,7 @@
 
             <div class="col-sm-8">
 
-                <input type="text" name="email"  class="form-control"/>
+                <input type="text" id ="email"  th:field="*{email}" class="form-control"/>
 
             </div>
 
@@ -138,7 +138,7 @@
 
             <div class="col-sm-8">
 
-                <select th:filed="*{roles}" class="form-control" required>
+                <select id ="roles" th:field="*{roles}" class="form-control" required>
 
                     <th:block th:each="role : ${roles}">
 
