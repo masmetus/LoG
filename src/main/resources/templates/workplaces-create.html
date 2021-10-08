@@ -15,7 +15,6 @@
 
     <a th:href="@{/Index}" class="control control_home">
 
-        <img src="Logo.png" alt="Home" width="100" height="40">
     </a>
 
 
@@ -45,6 +44,8 @@
 
     <div class="container text-center">
     <div class="text-center"><h2>Добавление рабочего места</h2>
+
+
     </div>
 
         <form th:action="@{/room-details/workplaces-create/{id}(id=${roomNumber})}" th:object="${workplace}" method="post">
@@ -64,19 +65,9 @@
 
                 </div>
 
-                <div class="form-group row" >
 
-                    <label class="col-form-label col-sm-4">Кабинет:</label>
+                <input hidden type="text"  th:value="${roomNumber}" class="form-control" />
 
-                    <div class="col-sm-8">
-
-
-                        <input type="text"  th:value="${roomNumber}" class="form-control" />
-
-
-                    </div>
-
-                </div>
 
                 <div class="form-group row">
 
@@ -97,19 +88,6 @@
                    </div>
 
                 </div>
-
-                <div class="form-group row">
-
-                    <label class="col-form-label col-sm-4">Инв номер монитора:</label>
-
-                    <div class="col-sm-8">
-
-                        <input type="text" th:field="*{id_Monitor}" id="id_Monitor"  placeholder="Введите номер рабочего места" class="form-control"/>
-
-                    </div>
-
-                </div>
-
 
             </div>
 

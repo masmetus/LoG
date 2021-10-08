@@ -18,6 +18,7 @@
         <img src="Logo.png" alt="Home" width="100" height="40">
     </a>
 
+
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 
         <li class="nav-item active">
@@ -25,7 +26,7 @@
         </li>
 
         <li class="nav-item active">
-            <a th:href="@{/Request}" class="btn btn-outline-primary ml-2 mr-2" role="button">Заявки<span class="sr-only"></span></a>
+            <a th:href="@{/RequestList}" class="btn btn-outline-primary ml-2 mr-2" role="button">Заявки<span class="sr-only"></span></a>
         </li>
 
         <li class="nav-item active">
@@ -37,20 +38,27 @@
         </li>
 
     </ul>
+
+    <div>
+        <form sec:authorize="isAuthenticated()" class="form-inline" th:action="@{/logout}" method="post">
+            <button type="submit" class="btn btn-outline-primary mr-2" >Выйти</button>
+        </form>
+    </div>
 </nav>
 
 <!-- <div th:unless="${user.id == null}"></div> -->
 
 <div sec:authorize="hasAuthority('Admin')" class="container text-center">
     <div class="container mt-5">
-        <h2>Установленное ПО</h2>
+        <h2>Заявки о неисправности</h2>
         <table class="table">
             <thead>
             <tr>
                 <th>Номер кабинета</th>
                 <th>Инв. номер компьютера</th>
                 <th>Кто создал</th>
-                <th>Тема заявки</th>
+                <th>Программа</th>
+                <th>Описание проблемы</th>
                 <th>Статус заявки</th>
                 <th>Дата открытия заявки</th>
                 <th>Дата закрытия заявки</th>
@@ -61,20 +69,27 @@
             </thead>
             <tbody>
             <tr th:each="requests: ${requestList}">
+                <div th:switch = ${requests.requestStatus}>
                 <td th:text="${requests.room.getRoomNumber()}"></td>
                 <td th:text="${requests.ID_Computer}"></td>
                 <td th:text="${requests.user.getFullName()}"></td>
-                <td th:text="${requests.title_of_the_problem}"></td>
-                <td th:text="${requests.request_status}"></td>
+                <td th:text="${requests.Installedsoftware.getSoftware().getName()}"></td>
+                <td th:text="${requests.description_of_the_problem}"></td>
+                <td>
+                    <span th:if = "${requests.requestStatus}">Открыта</span>
+                    <span th:unless = "${requests.requestStatus}">Закрыта</span>
+                </td>
                 <td th:text="${requests.application_date}"></td>
                 <td th:text="${requests.application_closing_date}"></td>
-                <td><a th:href="@{request-update/{id}(id=${requests.id})}" class="btn btn-outline-primary ml-2 mr-2" role="button">Закрыть заявку</a></td>
-                <td><a th:href="@{request-delete/{id}(id=${requests.id})}" class="btn btn-outline-primary ml-2 mr-2" role="button">Удалить</a></td>
+                    <td><form method="post" th:case="true"  th:action="@{/closeRequest/{id}(id=${requests.id})}">
+                        <button type="submit" name="submit" value="value" class="btn btn-outline-primary ml-1 mr-1">Закрыть заявку</button>
+                    </form></td>
+                </div>
+                <td><a th:href="@{request-delete/{id}(id=${requests.id})}" class="btn btn-danger ml-1 mr-1" role="button">Удалить</a></td>
             </tr>
             </tbody>
         </table>
     </div>
-    <div class="text-center"><a href="/workplaces-create" class="btn btn-outline-primary ml-2 mr-2" role="button">Создать новый кабинет</a></div>
 
 </div>
 </div>

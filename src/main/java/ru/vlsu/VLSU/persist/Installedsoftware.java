@@ -1,5 +1,7 @@
 package ru.vlsu.VLSU.persist;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -15,30 +17,44 @@ public class Installedsoftware {
     @JoinColumn(name = "ID_Software")
     private Software software;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ID_computer")
     private Computer computer;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date LicenseStart;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date LicenseEnd;
 
     private Integer TypeLicense_ID;
 
-    private Integer ID_enginere;
+    @Column(name = "ID_Software", insertable = false, updatable = false)
+    private Integer softwareId;
+
+    @ManyToOne
+    @JoinColumn(name = "ID_enginere")
+    private User user;
 
     private Date InstallationDate;
 
     @Column(name = "work_status")
     private boolean WorkStatus;
 
-    private Integer ID_room;
 
     public Installedsoftware() {
     }
 
     public Integer getId() {
         return id;
+    }
+
+    public Integer getSoftwareId() {
+        return softwareId;
+    }
+
+    public void setSoftwareId(Integer softwareId) {
+        this.softwareId = softwareId;
     }
 
     public void setId(Integer id) {
@@ -85,13 +101,14 @@ public class Installedsoftware {
         TypeLicense_ID = typeLicense_ID;
     }
 
-    public Integer getID_enginere() {
-        return ID_enginere;
+    public User getUser() {
+        return user;
     }
 
-    public void setID_enginere(Integer ID_enginere) {
-        this.ID_enginere = ID_enginere;
+    public void setUser(User user) {
+        this.user = user;
     }
+
 
     public boolean getWorkStatus() {
         return WorkStatus;
@@ -99,14 +116,6 @@ public class Installedsoftware {
 
     public void setWorkStatus(boolean workStatus) {
         WorkStatus = workStatus;
-    }
-
-    public Integer getID_room() {
-        return ID_room;
-    }
-
-    public void setID_room(Integer ID_room) {
-        this.ID_room = ID_room;
     }
 
     public Date getInstallationDate() {

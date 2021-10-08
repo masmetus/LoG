@@ -1,6 +1,8 @@
 package ru.vlsu.VLSU.persist;
 
 import javax.persistence.*;
+import javax.swing.*;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
@@ -11,14 +13,12 @@ public class Software {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Size(min = 2)
     private String Name;
 
-    @OneToMany(mappedBy = "software")
+    @OneToMany(mappedBy = "software", cascade = CascadeType.ALL )
     private List<Installedsoftware> installedsoftwares;
 
-    private Integer ID_Company;
-
-    private Integer ID_Category;
 
     public Software() {
     }
@@ -39,19 +39,5 @@ public class Software {
         Name = name;
     }
 
-    public Integer getID_Company() {
-        return ID_Company;
-    }
 
-    public void setID_Company(Integer ID_Company) {
-        this.ID_Company = ID_Company;
-    }
-
-    public Integer getID_Category() {
-        return ID_Category;
-    }
-
-    public void setID_Category(Integer ID_Category) {
-        this.ID_Category = ID_Category;
-    }
 }

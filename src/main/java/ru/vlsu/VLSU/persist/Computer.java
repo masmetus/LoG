@@ -14,16 +14,15 @@ public class Computer {
 
     private Integer INV;
 
-    @OneToOne(mappedBy = "computer")
+    @OneToOne(cascade = CascadeType.ALL ,mappedBy = "computer")
     private Workplace workplace;
 
-    private Integer ID_computerType;
 
     private boolean isWorking;
 
     private Integer id_component;
 
-    @OneToMany(mappedBy = "computer")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "computer")
     private List<Installedsoftware> installedsoftwares;
 
     public Computer() {
@@ -59,14 +58,6 @@ public class Computer {
 
     public void setWorkplace(Workplace workplace) {
         this.workplace = workplace;
-    }
-
-    public Integer getID_computerType() {
-        return ID_computerType;
-    }
-
-    public void setID_computerType(Integer ID_computerType) {
-        this.ID_computerType = ID_computerType;
     }
 
     public boolean isWorking() {

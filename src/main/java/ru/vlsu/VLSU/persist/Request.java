@@ -11,17 +11,18 @@ public class Request {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ID_room")
     private Room room;
 
     private Integer ID_Computer;
 
-    @ManyToOne
-    @JoinColumn(name = "installedsoftware_ID")
-    private Software software;
 
-    private boolean request_status;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "installedsoftware_ID")
+    private Installedsoftware installedsoftware;
+
+    private boolean requestStatus;
 
     private Date application_date;
 
@@ -89,20 +90,20 @@ public class Request {
         this.ID_Computer = ID_Computer;
     }
 
-    public Software getSoftware() {
-        return software;
+    public Installedsoftware getInstalledsoftware() {
+        return installedsoftware;
     }
 
-    public void setSoftware(Software software) {
-        this.software = software;
+    public void setInstalledsoftware(Installedsoftware installedsoftware) {
+        this.installedsoftware = installedsoftware;
     }
 
-    public boolean isRequest_status() {
-        return request_status;
+    public boolean isRequestStatus() {
+        return requestStatus;
     }
 
-    public void setRequest_status(boolean request_status) {
-        this.request_status = request_status;
+    public void setRequestStatus(boolean requestStatus) {
+        this.requestStatus = requestStatus;
     }
 
     public Date getApplication_date() {

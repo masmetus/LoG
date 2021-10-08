@@ -18,11 +18,11 @@ public class RoomController {
     @Autowired
     private RoomRepository roomRepository;
     @Autowired
-    private UserRepository userRepository;
-    @Autowired
     private WorkplaceRepository workplaceRepository;
     @Autowired
     private ComputerRepository computerRepository;
+    @Autowired
+    private SoftwareRepository softwareRepository;
 
 
     @GetMapping("/Rooms")
@@ -38,11 +38,15 @@ public class RoomController {
     }
 
     @PostMapping("/room-create")
-    public String roomAdd(Room room, User user, Model model){
-        List<User> users = userRepository.findAll();
-        roomRepository.save(room);
-        userRepository.save(user);
-        return "redirect:/Rooms";
+    public String roomAdd(Room room, Model model){
+        try {
+            roomRepository.save(room);
+            return "redirect:/Rooms";
+        }
+        catch (Exception ex){
+            model.addAttribute("Error", "Кабинет уже существует");
+            return "room-create";
+        }
     }
 
     @GetMapping("room-delete/{id}")
@@ -93,5 +97,7 @@ public class RoomController {
         workplaceRepository.save(workplace);
         return roomDetails(room.getId(), model);
     }
+
+
 
 }

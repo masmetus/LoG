@@ -1,6 +1,7 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru" xmlns:th="http://thymeleaf.org"
       xmlns:sec="http://thymeleaf.org/extras/spring-security">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-file=no">
@@ -9,13 +10,12 @@
 
     <title>GuLog</title>
 </head>
-
 <body>
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
     <a href="@{/Index}" class="control control_home">
 
-        <img src="Logo.png" alt="Home" width="100" height="40">
     </a>
 
 
@@ -23,6 +23,10 @@
 
         <li class="nav-item active">
             <a  th:href="@{/Rooms}" class="btn btn-outline-primary ml-2 mr-2" role="button">Кабинеты<span class="sr-only"></span></a>
+        </li>
+
+        <li class="nav-item active">
+            <a  th:href="@{/Computers}" class="btn btn-outline-primary ml-2 mr-2" role="button">Кабинеты<span class="sr-only"></span></a>
         </li>
 
         <li class="nav-item active">
@@ -38,40 +42,36 @@
         </li>
 
     </ul>
+
+    <div>
+        <form sec:authorize="isAuthenticated()" class="form-inline" th:action="@{/logout}" method="post">
+            <button type="submit" class="btn btn-outline-primary mr-2" >Выйти</button>
+        </form>
+    </div>
+
 </nav>
 
-<div sec:authorize="hasAuthority('Admin')" class="container text-center">
 
-    <div class="text-center"><h2>Добавление кабинета</h2>
-
-        <div th:if = "${Error}" class="alert alert-danger">
-            <span th:text = "${Error}"></span>
-        </div>
-
-        <form th:action="@{/room-create}" th:object="${room}" method="post">
-
-            <div class="m-3">
-
-
-                <div class="form-group row">
-
-                    <label class="col-form-label col-sm-4">Номер кабинета:</label>
-
-                    <div class="col-sm-8">
-
-                        <input type="text" th:field="*{roomNumber}" id="roomNumber"  placeholder="Введите номер кабинета" class="form-control"/>
-
-                    </div>
-
-                </div>
-            </div>
-
-            <button type="submit" class="btn btn-success">Создать</button>
-
-        </form>
-
+    <div class="container mt-5">
+        <h2 class="text-center">ПО</h2>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Название</th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="software: ${softwares}">
+                <td th:text="${software.getName()}"></td>
+                <td><a th:href="@{/software/softwareEdit/{id}(id=${software.id})}" class="btn btn-outline-primary ml-1 mr-1" role="button">Редактировать</a> </td>
+                <td><a th:href="@{software/softwareDelete/{id}(id=${software.id})}" class="btn btn-danger ml-1 mr-1" role="button">Удалить</a></td>
+            </tr>
+            </tbody>
+        </table>
     </div>
-</div>
+    <div class="text-center"><a th:href="@{/software/softwareCreate}" class="btn btn-outline-primary ml-2 mr-2" role="button">Добавить новое ПО</a></div>
 
 </body>
 </html>

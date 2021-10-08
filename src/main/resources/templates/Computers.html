@@ -9,8 +9,8 @@
 
     <title>GuLog</title>
 </head>
-
 <body>
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
     <a th:href="@{/Index}" class="control control_home">
@@ -26,11 +26,11 @@
         </li>
 
         <li class="nav-item active">
-            <a th:href="@{/user-list}" class="btn btn-outline-primary ml-2 mr-2" role="button">Заявки<span class="sr-only"></span></button></a>
+            <a th:href="@{/user-list}" class="btn btn-outline-primary ml-2 mr-2" role="button">Пользователи<span class="sr-only"></span></button></a>
         </li>
 
         <li class="nav-item active">
-            <a th:href="@{/Roles}" class="btn btn-outline-primary ml-2 mr-2" role="button">Заявки<span class="sr-only"></span></button></a>
+            <a th:href="@{/Roles}" class="btn btn-outline-primary ml-2 mr-2" role="button">Роли<span class="sr-only"></span></button></a>
         </li>
 
     </ul>
@@ -51,9 +51,7 @@
     <table class="table">
         <thead>
         <tr>
-            <th>id</th>
             <th>Инв. номер компьютера</th>
-            <th>Тип компьютера</th>
             <th>Статус работы</th>
             <th></th>
             <th></th>
@@ -62,18 +60,15 @@
         </thead>
         <tbody>
         <tr th:each="computer: ${computers}">
-            <td th:text="${computer.id}"></td>
             <td th:text="${computer.INV}"></td>
-            <td th:text="${computer.ID_computerType}"></td>
             <td th:text="${computer.isWorking}"></td>
-            <td><a th:href="@{computer-details/{id}(id=${computer.id})}" class="btn btn-outline-primary ml-1 mr-1" role="button">Подробнее</a></td>
-            <td><a th:href="@{computer-update/{id}(id=${computer.id})}" class="btn btn-outline-primary ml-1 mr-1" role="button">Редактировать</a></td>
+            <td><a th:href="@{room-details/computer-details/{id}(id=${computer.id})}" class="btn btn-outline-primary ml-1 mr-1" role="button">Подробнее</a></td>
             <td><a th:href="@{computer-delete/{id}(id=${computer.id})}" class="btn btn-danger ml-1 mr-1" role="button">Удалить</a></td>
         </tr>
         </tbody>
     </table>
 </div>
-<div class="text-center"><a href="/room-create" class="btn btn-outline-primary ml-2 mr-2" role="button">Создать новый кабинет</a></div>
+<div class="text-center"><a th:href="@{/computerCreate}" class="btn btn-outline-primary ml-2 mr-2" role="button">Создать новый компьютер</a></div>
 
 
 

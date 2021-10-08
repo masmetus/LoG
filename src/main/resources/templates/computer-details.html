@@ -15,7 +15,6 @@
 
     <a th:href="@{/Index}" class="control control_home">
 
-        <img src="Logo.png" alt="Home" width="100" height="40">
     </a>
 
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
@@ -25,7 +24,7 @@
         </li>
 
         <li class="nav-item active">
-            <a th:href="@{/Request}" class="btn btn-outline-primary ml-2 mr-2" role="button">Заявки<span class="sr-only"></span></a>
+            <a th:href="@{/RequestList}" class="btn btn-outline-primary ml-2 mr-2" role="button">Заявки<span class="sr-only"></span></a>
         </li>
 
         <li class="nav-item active">
@@ -47,12 +46,10 @@
         <table class="table">
             <thead>
             <tr>
-                <th>Инв. номер компьютера</th>
                 <th>Название программы</th>
                 <th>Дата начала действия лицензии</th>
                 <th>Дата конца действия лицензии</th>
                 <th>Дата установки</th>
-                <th>Тип лицензии</th>
                 <th>Статус</th>
                 <th></th>
                 <th></th>
@@ -61,21 +58,32 @@
             </thead>
             <tbody>
             <tr th:each="installedsoftwares: ${installedsoftwares}">
-                <td th:text="${installedsoftwares.computer.getINV()}"></td>
+                <div th:switch = ${installedsoftwares.WorkStatus}>
                 <td th:text="${installedsoftwares.software.getName()}"></td>
-                <td th:text="${installedsoftwares.LicenseStart}"></td>
-                <td th:text="${installedsoftwares.LicenseEnd}"></td>
-                <td th:text="${installedsoftwares.InstallationDate}"></td>
-                <td th:text="${installedsoftwares.TypeLicense_ID}"></td>
-                <td th:text="${installedsoftwares.WorkStatus}"></td>
-                <td><a th:href="@{saveRequest/{id}(id=${installedsoftwares.id})}" class="btn btn-outline-primary ml-1 mr-1" role="button">Неисправность</a></td>
+                <td th:text="${#dates.format(installedsoftwares.LicenseStart, 'dd-MM-yyyy HH:mm')}"></td>
+                <td th:text="${#dates.format(installedsoftwares.LicenseEnd, 'dd-MM-yyyy HH:mm')}"></td>
+                <td th:text="${#dates.format(installedsoftwares.InstallationDate, 'dd-MM-yyyy HH:mm')}"></td>
+                    <td>
+                        <span th:if = "${installedsoftwares.WorkStatus}">Работает</span>
+                        <span th:unless = "${installedsoftwares.WorkStatus}">Не работает</span>
+                    </td>
+
+                    <td><a th:case="true" th:href="@{saveRequest/{id}(id=${installedsoftwares.id})}" class="btn btn-outline-primary ml-1 mr-1" role="button">Неисправность</a></td>
+                </div>
+
                 <td><a th:href="@{installedsoftwares-update/{id}(id=${installedsoftwares.id})}" class="btn btn-outline-primary ml-1 mr-1" role="button">Редактировать</a></td>
-                <td><a th:href="@{installedsoftwares-delete/{id}(id=${installedsoftwares.id})}" class="btn btn-danger ml-1 mr-1" role="button">Удалить</a></tr>
+                <!--<td><a th:href="@{/room-details/computer-details/installedsoftwares-delete/{id}(id=${installedsoftwares.id})}" class="btn btn-danger ml-1 mr-1" role="button">Удалить</a></tr>-->
             </tr>
             </tbody>
         </table>
     </div>
-    <div class="text-center"><a th:href="@{/room-details/saveSoft/{id}(id=${computerid})}" class="btn btn-outline-primary ml-2 mr-2" role="button">Добавить рабочее место</a></div>
+    <div class="text-center">
+
+        <a th:href="@{/room-details/computer-details/installSoft/{id}(id=${computerId})}" class="btn btn-outline-primary ml-2 mr-2" role="button">Установить ПО</a>
+        <a th:href="@{/Computers}" class="btn btn-outline-primary ml-2 mr-2" role="button">К списку компьютеров</a>
+        <!--<a th:href="@{/room-details/{id}(id=${computerId})}" class="btn btn-outline-primary ml-2 mr-2" role="button">К кабинет</a>-->
+
+    </div>
 
 </div>
 </div>

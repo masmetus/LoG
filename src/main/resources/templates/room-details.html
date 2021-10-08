@@ -60,7 +60,7 @@
                 <td th:text="${workplaces.id}"></td>
                 <td th:text="${workplaces.Number}"></td>
                 <td th:text="${workplaces.computer.getINV()}"></td>
-                <td><a th:href="@{computer-details/{id}(id=${workplaces.id})}" class="btn btn-outline-primary ml-1 mr-1" role="button">Подробнее</a></td>
+                <td><a th:href="@{computer-details/{id}(id=${workplaces.computer.getId()})}" class="btn btn-outline-primary ml-1 mr-1" role="button">Подробнее</a></td>
                 <td><a th:href="@{workplaces-update/{id}(id=${workplaces.id})}" class="btn btn-outline-primary ml-1 mr-1" role="button">Редактировать</a></td>
                 <td><a th:href="@{workplaces-delete/{id}(id=${workplaces.id})}" class="btn btn-danger ml-1 mr-1" role="button">Удалить</a></tr>
             </tr>
