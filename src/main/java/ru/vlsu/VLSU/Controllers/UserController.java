@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import ru.vlsu.VLSU.persist.User;
+import ru.vlsu.VLSU.persist.UserRepository;
 import ru.vlsu.VLSU.service.UserRep;
 import ru.vlsu.VLSU.service.UserService;
 
@@ -37,7 +38,7 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String registerNewUser(@Valid UserRep userRep, BindingResult bindingResult){
+    public String registerNewUser(@Valid UserRep userRep, BindingResult bindingResult, UserRepository userRepository){
         if(bindingResult.hasErrors()){
             return "register";
         }

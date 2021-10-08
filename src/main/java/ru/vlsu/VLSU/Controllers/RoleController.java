@@ -39,9 +39,15 @@ public class RoleController {
     }
 
     @PostMapping("/role-create")
-    public String createRole(Role role){
-        roleRepository.save(role);
-        return "redirect:/Roles";
+    public String createRole(Role role, Model model){
+        try {
+            roleRepository.save(role);
+            return "redirect:/Roles";
+        }
+        catch (Exception ex){
+            model.addAttribute("Error", "Такая роль уже существует");
+            return "role-create";
+        }
     }
 
     @GetMapping("role-delete/{id}")

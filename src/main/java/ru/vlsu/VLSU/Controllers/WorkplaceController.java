@@ -45,31 +45,4 @@ public class WorkplaceController {
         return "redirect:workplaceList";
     }
 
-    /*@GetMapping("workplace-delete/{id}")
-    public String deleteWorkplace(@PathVariable("id") Integer id){
-        workplaceRepository.deleteById(id);
-        return "redirect:/room-details/{id}";
-    }
-
-    @GetMapping("workplace-update/{id}")
-    public String roomUpdateForm(@PathVariable("id") Integer id, Model model){
-        Workplace workplace = workplaceRepository.findById(id).get();
-        model.addAttribute("workplace", workplace);
-        return "workplace-update";
-    }
-
-    @PostMapping("/room-update")
-    public String updateRoom(Workplace workplace){
-        workplaceRepository.save(workplace);
-        return "workplace-update/{id}";
-    }*/
-
-    /*@GetMapping("/room-details/workplaces-details/{id}")
-    public String workplaceDetails(@PathVariable("id") Integer id, Model model){
-        Workplace workplaces = workplaceRepository.findById(id).get();
-        Computer computers = workplaceRepository.findById(id).get().getComputer();
-        model.addAttribute("computers", computers);
-        model.addAttribute("workplaces", workplaces);
-        return "workplace-details";
-    }*/
 }

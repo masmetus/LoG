@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru" xmlns:th="http://thymeleaf.org"
       xmlns:sec="http://thymeleaf.org/extras/spring-security">
 <head>
@@ -7,16 +7,16 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <title>Редактировать</title>
+    <title>GuLog</title>
 </head>
-<body>
 
+<body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
     <a th:href="@{/Index}" class="control control_home">
 
-        <img src="Logo.png" alt="Home" width="100" height="40">
     </a>
+
 
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 
@@ -41,42 +41,59 @@
 
 <div sec:authorize="hasAuthority('Admin')" class="container text-center">
 
-    <div class="text-center"><h2>Редактировать</h2>
 
-        <div th:if = "${Error}" class="alert alert-danger">
-            <span th:text = "${Error}"></span>
+    <div class="container text-center">
+        <div class="text-center"><h2>Изменение рабочего места</h2>
+
         </div>
 
-        <div th:unless="${room.id == null}"></div>
-
-        <form th:action="@{/room-update}" th:object="${room}" method="post">
+        <form th:action="@{/room-details/workplaseEdit/{id}(id=${roomNumber})}" th:object="${workplace}" method="post">
 
             <div class="m-3">
 
 
-                    <div class="form-group row">
+                <div class="form-group row">
 
-                        <label class="col-form-label col-sm-4">Имя:</label>
+                    <label class="col-form-label col-sm-4">Номер рабочего места:</label>
 
-                        <div class="col-sm-8">
+                    <div class="col-sm-8">
 
-                            <input type="text" th:field="*{roomNumber}" id="roomNumber"  placeholder="Введите номер кабинета" class="form-control"/>
-
-                        </div>
+                        <input type="text" id="Number"  th:field="*{Number}" placeholder="Введите номер рабочего места" class="form-control"/>
 
                     </div>
 
-
-                <div th:unless="${room.id == null}">
-                    <input type="hidden" th:field="*{id}" th:value="${room.id}" />
-                <button type="submit" class="btn btn-success">Изменить</button>
                 </div>
 
+
+                <input hidden type="text"  th:value="${roomNumber}" class="form-control" />
+
+
+                <div class="form-group row">
+
+                    <label class="col-form-label col-sm-4">Инв номер компьютера:</label>
+
+                    <div class="col-sm-8">
+
+                        <select id = "computer" th:field="*{computer_id}" class="form-control" required>
+
+                            <th:block th:each="computer : ${computers}">
+
+                                <option th:value="${computer.getId()}"  th:text="${computer.getINV() }"></option>
+
+                            </th:block>
+
+                        </select>
+
+                    </div>
+
+                </div>
 
             </div>
 
         </form>
+
     </div>
 </div>
+
 </body>
 </html>

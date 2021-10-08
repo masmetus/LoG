@@ -63,9 +63,15 @@ public class RoomController {
     }
 
     @PostMapping("/room-update")
-    public String updateRoom(Room rooms){
-        roomRepository.save(rooms);
-        return "redirect:/Rooms";
+    public String updateRoom(Room room, Model model){
+        try {
+            roomRepository.save(room);
+            return "redirect:/Rooms";
+        }
+        catch (Exception ex){
+            model.addAttribute("Error", "Кабинет с таким номером уже существует");
+            return "room-update";
+        }
     }
 
     @GetMapping("room-details/{id}")
@@ -97,6 +103,26 @@ public class RoomController {
         workplaceRepository.save(workplace);
         return roomDetails(room.getId(), model);
     }
+
+   /* @GetMapping("/room-details/workplaseEdit/{id}")
+    public String workplaseEditForm(@PathVariable("id") Integer id, Model model){
+        Workplace workplace = workplaceRepository.findById(id).get();
+        model.addAttribute("roomNumber", id);
+        model.addAttribute("computers", computerRepository.findByWorkplace(null));
+        model.addAttribute("workplace", workplace);
+        return "workplaseEdit";
+    }
+
+    @PostMapping("/room-details/workplaseEdit/{id}")
+    public String workplaseEdit(@PathVariable("id") Integer id, Model model, Workplace workplace){
+        Room room = roomRepository.findById(id).get();
+        workplace.setRoom(room);
+        workplace.setComputer(computerRepository.findById(workplace.getComputer_id()).get());
+        workplace.setId(null);
+        workplaceRepository.save(workplace);
+        return roomDetails(room.getId(), model);
+    } */
+
 
 
 
