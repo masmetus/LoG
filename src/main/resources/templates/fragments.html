@@ -1,0 +1,68 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:fragment="html_head">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"/>
+</head>
+<body>
+
+<div th:fragment="header">
+
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" th:href="@{/}">LoG</a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+
+                    <li class="nav-item">
+                        <a  sec:authorize="hasAnyAuthority('Admin', 'Engineer', 'Teacher', 'Заведующий')" th:href="@{/Rooms}" class="nav-link">Кабинеты</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a  sec:authorize="hasAnyAuthority('Admin', 'Engineer', 'Заведующий')" th:href="@{/Computers}" class="nav-link">Список компьютеров<span class="sr-only"></span></a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a  sec:authorize="hasAnyAuthority('Admin', 'Engineer')" th:href="@{/software}" class="nav-link">Список ПО<span class="sr-only"></span></a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a sec:authorize="hasAnyAuthority('Admin', 'Engineer')" th:href="@{/RequestList}" class="nav-link">Заявки<span class="sr-only"></span></a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a sec:authorize="hasAnyAuthority('Admin', 'Заведующий')" th:href="@{/users}" class="nav-link">Пользователи<span class="sr-only"></span></a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a sec:authorize="hasAnyAuthority('Admin', 'Заведующий')" th:href="@{/Roles}" class="nav-link">Список ролей<span class="sr-only"></span></button></a>
+                    </li>
+
+                </ul>
+
+                <div class="form-inline my-2 my-lg-0" id="navbarSupportedContent2">
+                    <div>
+                        <div sec:authorize="isAnonymous()" class="form-inline my-2 my-lg-0 float-right">
+                            <a class="btn btn-outline-success my-2 mr-2 my-sm-0" th:href="@{/login}">Логин</a>
+                        </div>
+                    </div>
+
+                    <form sec:authorize="isAuthenticated()" class="form-inline my-2 my-lg-0 float-right" th:action="@{/logout}" method="post">
+                        <button class="btn btn-outline-success my-2 my-sm-0">Выйти</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+</div>
+</body>
+</html>

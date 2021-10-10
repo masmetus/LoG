@@ -8,33 +8,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-
-    <a th:href="@{/Index}" class="control control_home">
-
-    </a>
-
-
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-
-        <li class="nav-item active">
-            <a  th:href="@{/Rooms}" class="btn btn-outline-primary ml-2 mr-2" role="button">Кабинеты<span class="sr-only"></span></a>
-        </li>
-
-        <li class="nav-item active">
-            <a th:href="@{/Request}" class="btn btn-outline-primary ml-2 mr-2" role="button">Заявки<span class="sr-only"></span></a>
-        </li>
-
-        <li class="nav-item active">
-            <a th:href="@{/users}" class="btn btn-outline-primary ml-2 mr-2" role="button">Пользователи<span class="sr-only"></span></a>
-        </li>
-
-        <li class="nav-item active">
-            <a th:href="@{/Roles}" class="btn btn-outline-primary ml-2 mr-2" role="button">Роли<span class="sr-only"></span></button></a>
-        </li>
-
-    </ul>
-</nav>
+<div th:replace="fragments :: header"></div>
 
 <div class="container text-center">
     <div class="text-center"><h2>Установка</h2>

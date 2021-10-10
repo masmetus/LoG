@@ -11,36 +11,11 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<div th:replace="fragments :: header"></div>
 
-    <a th:href="@{/Index}" class="control control_home">
 
-    </a>
 
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-
-        <li class="nav-item active">
-            <a  th:href="@{/Rooms}" class="btn btn-outline-primary ml-2 mr-2" role="button">Кабинеты<span class="sr-only"></span></a>
-        </li>
-
-        <li class="nav-item active">
-            <a th:href="@{/RequestList}" class="btn btn-outline-primary ml-2 mr-2" role="button">Заявки<span class="sr-only"></span></a>
-        </li>
-
-        <li class="nav-item active">
-            <a th:href="@{/users}" class="btn btn-outline-primary ml-2 mr-2" role="button">Пользователи<span class="sr-only"></span></a>
-        </li>
-
-        <li class="nav-item active">
-            <a th:href="@{/Roles}" class="btn btn-outline-primary ml-2 mr-2" role="button">Роли<span class="sr-only"></span></button></a>
-        </li>
-
-    </ul>
-</nav>
-
-<!-- <div th:unless="${user.id == null}"></div> -->
-
-<div sec:authorize="hasAuthority('Admin')" class="container text-center">
+<div sec:authorize="hasAnyAuthority('Admin', 'Engineer', 'Teacher', 'Заведующий')" class="container text-center">
     <div class="container mt-5">
         <h2>Установленное ПО</h2>
         <table class="table">
@@ -68,24 +43,22 @@
                         <span th:unless = "${installedsoftwares.WorkStatus}">Не работает</span>
                     </td>
 
-                    <td><a th:case="true" th:href="@{saveRequest/{id}(id=${installedsoftwares.id})}" class="btn btn-outline-primary ml-1 mr-1" role="button">Неисправность</a></td>
+                    <td><a sec:authorize="hasAnyAuthority('Admin', 'Teacher')" th:case="true" th:href="@{saveRequest/{id}(id=${installedsoftwares.id})}" class="btn btn-outline-primary ml-1 mr-1" role="button">Неисправность</a></td>
                 </div>
 
-                <td><a th:href="@{installedsoftwares-update/{id}(id=${installedsoftwares.id})}" class="btn btn-outline-primary ml-1 mr-1" role="button">Редактировать</a></td>
-                <!--<td><a th:href="@{/room-details/computer-details/installedsoftwares-delete/{id}(id=${installedsoftwares.id})}" class="btn btn-danger ml-1 mr-1" role="button">Удалить</a></tr>-->
+                <td><a sec:authorize="hasAnyAuthority('Engineer', 'Admin')" th:href="@{installedsoftwares-update/{id}(id=${installedsoftwares.id})}" class="btn btn-outline-primary ml-1 mr-1" role="button">Редактировать</a></td>
+                <td><a sec:authorize="hasAnyAuthority('Engineer', 'Admin')" th:href="@{installedsoftwares-delete/{id}(id=${installedsoftwares.id})}" class="btn btn-danger ml-1 mr-1" role="button">Удалить</a></tr>
             </tr>
             </tbody>
         </table>
     </div>
     <div class="text-center">
 
-        <a th:href="@{/room-details/computer-details/installSoft/{id}(id=${computerId})}" class="btn btn-outline-primary ml-2 mr-2" role="button">Установить ПО</a>
-        <a th:href="@{/Computers}" class="btn btn-outline-primary ml-2 mr-2" role="button">К списку компьютеров</a>
+        <a sec:authorize="hasAnyAuthority('Engineer', 'Admin')" th:href="@{/room-details/computer-details/installSoft/{id}(id=${computerId})}" class="btn btn-outline-primary ml-2 mr-2" role="button">Установить ПО</a>
         <!--<a th:href="@{/room-details/{id}(id=${computerId})}" class="btn btn-outline-primary ml-2 mr-2" role="button">К кабинет</a>-->
 
     </div>
 
-</div>
 </div>
 </body>
 </html>

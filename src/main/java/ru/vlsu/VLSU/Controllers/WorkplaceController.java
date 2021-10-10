@@ -42,7 +42,15 @@ public class WorkplaceController {
     @PostMapping("/workplaces-create")
         public String workplaceAdd(Workplace workplace){
         workplaceRepository.save(workplace);
-        return "redirect:workplaceList";
+        return "redirect:/workplaceList";
+    }
+
+
+
+    @GetMapping("/room-details/workplaces-delete/{id}")
+    public String workplaceDelete(@PathVariable Integer id,Workplace workplace, Computer computer){
+        workplaceRepository.deleteById(id);
+        return "redirect:/Rooms";
     }
 
 }

@@ -29,6 +29,10 @@ public class UserService {
         User user = new User();
         user.setUsername(userRep.getUsername());
         user.setPassword(passwordEncoder.encode(userRep.getPassword()));
+        user.setFirstName(userRep.getFirstName());
+        user.setLastName(userRep.getLastName());
+        user.setPhoneNumber(userRep.getPhoneNumber());
+        user.setEmail(userRep.getEmail());
         user.setRoles(Collections.singleton(new Role(2L, "Test")));
         repository.save(user);
     }

@@ -19,7 +19,7 @@ public class Room {
     @OneToMany(mappedBy = "room")
     private List<Request> requests;
 
-    @OneToMany(mappedBy = "room")
+    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL)
     private List<Workplace> workplaces;
 
     public List<Workplace> getWorkplaces() {

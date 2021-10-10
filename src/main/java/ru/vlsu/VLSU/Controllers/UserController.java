@@ -48,7 +48,7 @@ public class UserController {
         }
 
         userService.create(userRep);
-        return "redirect:/Index";
+        return "redirect:/users";
     }
 
     @PostMapping("users/save")

@@ -12,44 +12,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-
-    <a href="@{/Index}" class="control control_home">
-
-    </a>
-
-
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-
-        <li class="nav-item active">
-            <a  th:href="@{/Rooms}" class="btn btn-outline-primary ml-2 mr-2" role="button">Кабинеты<span class="sr-only"></span></a>
-        </li>
-
-        <li class="nav-item active">
-            <a  th:href="@{/Computers}" class="btn btn-outline-primary ml-2 mr-2" role="button">Кабинеты<span class="sr-only"></span></a>
-        </li>
-
-        <li class="nav-item active">
-            <a th:href="@{/RequestList}" class="btn btn-outline-primary ml-2 mr-2" role="button">Заявки<span class="sr-only"></span></a>
-        </li>
-
-        <li class="nav-item active">
-            <a th:href="@{/users}" class="btn btn-outline-primary ml-2 mr-2" role="button">Пользователи<span class="sr-only"></span></a>
-        </li>
-
-        <li class="nav-item active">
-            <a th:href="@{/Roles}" class="btn btn-outline-primary ml-2 mr-2" role="button">Роли<span class="sr-only"></span></button></a>
-        </li>
-
-    </ul>
-
-    <div>
-        <form sec:authorize="isAuthenticated()" class="form-inline" th:action="@{/logout}" method="post">
-            <button type="submit" class="btn btn-outline-primary mr-2" >Выйти</button>
-        </form>
-    </div>
-
-</nav>
+<div th:replace="fragments :: header"></div>
 
 
     <div class="container mt-5">
@@ -73,5 +36,6 @@
     </div>
     <div class="text-center"><a th:href="@{/software/softwareCreate}" class="btn btn-outline-primary ml-2 mr-2" role="button">Добавить новое ПО</a></div>
 
+</div>
 </body>
 </html>

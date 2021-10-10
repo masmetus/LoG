@@ -25,12 +25,6 @@ public class LogControllers {
         this.roleRepository = roleRepository;
     }
 
-    @GetMapping("/Index")
-    public String indexPage(){
-        return "Index";
-    }
-
-
     @GetMapping("/users")
     public String UsersPage(Model model, Role role){
         List<User> users = userRepository.findAll();
@@ -38,17 +32,6 @@ public class LogControllers {
         model.addAttribute("users", users);
         model.addAttribute("roles", roles);
         return "users";
-    }
-
-    @GetMapping("/user-create")
-    public String createUserForm(User user){
-        return "user-create";
-    }
-
-    @PostMapping("/user-create")
-    public String createUser(User user){
-       userRepository.save(user);
-       return "redirect:/users";
     }
 
 

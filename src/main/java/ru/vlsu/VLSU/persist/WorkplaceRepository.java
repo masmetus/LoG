@@ -9,6 +9,4 @@ import java.util.List;
 @Repository
 public interface WorkplaceRepository extends JpaRepository<Workplace, Integer> {
 
-
-    List<Workplace> findByRoomId(Integer id);
 }

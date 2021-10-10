@@ -11,48 +11,16 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-
-    <a th:href="@{/Index}" class="control control_home">
-
-        <img src="Logo.png" alt="Home" width="100" height="40">
-    </a>
-
-
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-
-        <li class="nav-item active">
-            <a th:href="@{/Request}" class="btn btn-outline-primary ml-2 mr-2" role="button">Заявки<span class="sr-only"></span></button></a>
-        </li>
-
-        <li class="nav-item active">
-            <a th:href="@{/user-list}" class="btn btn-outline-primary ml-2 mr-2" role="button">Пользователи<span class="sr-only"></span></button></a>
-        </li>
-
-        <li class="nav-item active">
-            <a th:href="@{/Roles}" class="btn btn-outline-primary ml-2 mr-2" role="button">Роли<span class="sr-only"></span></button></a>
-        </li>
-
-    </ul>
-
-    <div>
-        <form sec:authorize="isAuthenticated()" class="form-inline" th:action="@{/logout}" method="post">
-
-            <button type="submit" class="btn btn-outline-primary mr-2" >Выйти</button>
-
-        </form>
-    </div>
-
-
-</nav>
+<div th:replace="fragments :: header"></div>
 
 <div class="container mt-5">
+    <div sec:authorize="hasAnyAuthority('Admin', 'Engineer', 'Заведующий')" class="container text-center">
     <h2 class="text-center">Кабинеты</h2>
     <table class="table">
         <thead>
         <tr>
             <th>Инв. номер компьютера</th>
-            <th>Статус работы</th>
+            <!--<th>Статус работы</th>-->
             <th></th>
             <th></th>
             <th></th>
@@ -61,17 +29,17 @@
         <tbody>
         <tr th:each="computer: ${computers}">
             <td th:text="${computer.INV}"></td>
-            <td th:text="${computer.isWorking}"></td>
+            <!--<td th:text="${computer.isWorking}"></td>!-->
             <td><a th:href="@{room-details/computer-details/{id}(id=${computer.id})}" class="btn btn-outline-primary ml-1 mr-1" role="button">Подробнее</a></td>
-            <td><a th:href="@{computer-delete/{id}(id=${computer.id})}" class="btn btn-danger ml-1 mr-1" role="button">Удалить</a></td>
+            <td><a sec:authorize="hasAnyAuthority('Admin', 'Заведующий')" th:href="@{computer-delete/{id}(id=${computer.id})}" class="btn btn-danger ml-1 mr-1" role="button">Удалить</a></td>
         </tr>
         </tbody>
     </table>
 </div>
-<div class="text-center"><a th:href="@{/computerCreate}" class="btn btn-outline-primary ml-2 mr-2" role="button">Создать новый компьютер</a></div>
+<div class="text-center"><a sec:authorize="hasAnyAuthority('Admin', 'Заведующий')" th:href="@{computerCreate}" class="btn btn-outline-primary ml-2 mr-2" role="button">Создать новый компьютер</a></div>
 
 
 
-
+</div>
 </body>
 </html>
