@@ -38,6 +38,25 @@ public class ComputerController {
         return "computers";
     }
 
+    @GetMapping("computerUpdate/{id}")
+    public String computerUpdateForm(@PathVariable("id") Integer id, Model model){
+        Computer computer = computerRepository.findById(id).get();
+        model.addAttribute("computer", computer);
+        return "computerUpdate";
+    }
+
+    @PostMapping("/computerUpdate")
+    public String computerUpdate(Computer computer, Model model){
+        try {
+            computerRepository.save(computer);
+            return "redirect:/Computers";
+        }
+        catch (Exception ex){
+            model.addAttribute("Error", "Компьютер с таким инв. номером уже существует");
+            return "computerUpdate";
+        }
+    }
+
     @GetMapping("/computerCreate")
     public String computerCreateForm(Computer computer){
         return "computerCreate";

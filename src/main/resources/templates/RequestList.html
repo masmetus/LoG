@@ -13,9 +13,7 @@
 
 <div th:replace="fragments :: header"></div>
 
-<!-- <div th:unless="${user.id == null}"></div> -->
-
-<div sec:authorize="hasAuthority('Engineer')" class="container text-center">
+<div sec:authorize="hasAnyAuthority('Admin','Engineer')" class="container text-center">
     <div class="container mt-5">
         <h2>Заявки о неисправности</h2>
         <table class="table">
@@ -26,8 +24,8 @@
                 <th>Кто создал</th>
                 <th>Программа</th>
                 <th>Описание проблемы</th>
-                <th>Статус заявки</th>
                 <th>Дата открытия заявки</th>
+                <th>Статус заявки</th>
                 <th>Дата закрытия заявки</th>
                 <th></th>
                 <th></th>
@@ -42,11 +40,11 @@
                 <td th:text="${requests.user.getFullName()}"></td>
                 <td th:text="${requests.Installedsoftware.getSoftware().getName()}"></td>
                 <td th:text="${requests.description_of_the_problem}"></td>
-                <td>
-                    <span th:if = "${requests.requestStatus}">Открыта</span>
-                    <span th:unless = "${requests.requestStatus}">Закрыта</span>
-                </td>
                 <td th:text="${requests.application_date}"></td>
+                    <td>
+                        <span th:if = "${requests.requestStatus}">Открыта</span>
+                        <span th:unless = "${requests.requestStatus}">Закрыта</span>
+                    </td>
                 <td th:text="${requests.application_closing_date}"></td>
                     <td><form method="post" th:case="true"  th:action="@{/closeRequest/{id}(id=${requests.id})}">
                         <button type="submit" name="submit" value="value" class="btn btn-outline-primary ml-1 mr-1">Закрыть заявку</button>

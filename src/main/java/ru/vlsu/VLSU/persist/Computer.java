@@ -20,7 +20,6 @@ public class Computer {
 
     private boolean isWorking;
 
-    private Integer id_component;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "computer")
     private List<Installedsoftware> installedsoftwares;
@@ -68,11 +67,4 @@ public class Computer {
         isWorking = working;
     }
 
-    public Integer getId_component() {
-        return id_component;
-    }
-
-    public void setId_component(Integer id_component) {
-        this.id_component = id_component;
-    }
 }

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://thymeleaf.org"
+      xmlns:sec="http://thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-file=no">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Редактировать</title>
+</head>
+<body>
+
+<div th:replace="fragments :: header"></div>
+
+<div sec:authorize="hasAnyAuthority('Admin', 'Заведующий')" class="container text-center">
+
+    <div class="text-center"><h2>Редактировать</h2>
+
+        <div th:if = "${Error}" class="alert alert-danger">
+            <span th:text = "${Error}"></span>
+        </div>
+
+        <div th:unless="${computer.id == null}"></div>
+
+        <form th:action="@{/computerUpdate}" th:object="${computer}" method="post">
+
+            <div class="m-3">
+
+
+                <div class="form-group row">
+
+                    <label class="col-form-label col-sm-4">Имя:</label>
+
+                    <div class="col-sm-8">
+
+                        <input type="text" th:field="*{INV}" id="INV"  placeholder="Введите инв. номер " class="form-control"/>
+
+                    </div>
+
+                </div>
+
+
+                <div th:unless="${computer.id == null}">
+                    <input type="hidden" th:field="*{id}" th:value="${computer.id}" />
+                    <button type="submit" class="btn btn-success">Изменить</button>
+                </div>
+
+
+            </div>
+
+        </form>
+    </div>
+</div>
+</body>
+</html>

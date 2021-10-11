@@ -13,7 +13,7 @@ public class Installedsoftware {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ID_Software")
     private Software software;
 
@@ -27,12 +27,10 @@ public class Installedsoftware {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date LicenseEnd;
 
-    private Integer TypeLicense_ID;
-
     @Column(name = "ID_Software", insertable = false, updatable = false)
     private Integer softwareId;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ID_enginere")
     private User user;
 
@@ -93,13 +91,6 @@ public class Installedsoftware {
         LicenseEnd = licenseEnd;
     }
 
-    public Integer getTypeLicense_ID() {
-        return TypeLicense_ID;
-    }
-
-    public void setTypeLicense_ID(Integer typeLicense_ID) {
-        TypeLicense_ID = typeLicense_ID;
-    }
 
     public User getUser() {
         return user;

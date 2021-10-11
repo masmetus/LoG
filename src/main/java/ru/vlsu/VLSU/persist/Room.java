@@ -12,8 +12,6 @@ public class Room {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private  Integer responsible_id;
-
     private String RoomNumber;
 
     @OneToMany(mappedBy = "room")
@@ -47,14 +45,6 @@ public class Room {
     }
 
     public Room() {
-    }
-
-    public Integer getResponsible_id() {
-        return responsible_id;
-    }
-
-    public void setResponsible_id(Integer responsible_id) {
-        this.responsible_id = responsible_id;
     }
 
     public Room(String roomNumber) {

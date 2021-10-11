@@ -37,6 +37,7 @@ public class RequestController {
     public String closeRequest(@PathVariable("id") Integer id, Model model, Principal principal, User user){
         Request request = requestRepository.findById(id).get();
         request.setRequestStatus(false);
+        //request.setId_who_close(userRepository.findByUsername(principal.getName()).get());
         request.getInstalledsoftware().setWorkStatus(true);
         request.setApplication_closing_date(new Date(System.currentTimeMillis()));
         requestRepository.save(request);

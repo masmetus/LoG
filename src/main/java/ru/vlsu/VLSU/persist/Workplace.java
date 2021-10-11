@@ -23,7 +23,6 @@ public class Workplace {
     @Column(insertable = false, updatable = false)
     private Integer computer_id;
 
-    private Integer id_Monitor;
 
     public Workplace() {
     }
@@ -68,11 +67,4 @@ public class Workplace {
         this.computer = computer;
     }
 
-    public Integer getId_Monitor() {
-        return id_Monitor;
-    }
-
-    public void setId_Monitor(Integer id_Monitor) {
-        this.id_Monitor = id_Monitor;
-    }
 }

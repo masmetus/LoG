@@ -46,7 +46,7 @@
                     <td><a sec:authorize="hasAnyAuthority('Admin', 'Teacher')" th:case="true" th:href="@{saveRequest/{id}(id=${installedsoftwares.id})}" class="btn btn-outline-primary ml-1 mr-1" role="button">Неисправность</a></td>
                 </div>
 
-                <td><a sec:authorize="hasAnyAuthority('Engineer', 'Admin')" th:href="@{installedsoftwares-update/{id}(id=${installedsoftwares.id})}" class="btn btn-outline-primary ml-1 mr-1" role="button">Редактировать</a></td>
+                <td><a sec:authorize="hasAnyAuthority('Engineer', 'Admin')" th:href="@{instalsoftUpdate/{id}(id=${installedsoftwares.id})}" class="btn btn-outline-primary ml-1 mr-1" role="button">Редактировать</a></td>
                 <td><a sec:authorize="hasAnyAuthority('Engineer', 'Admin')" th:href="@{installedsoftwares-delete/{id}(id=${installedsoftwares.id})}" class="btn btn-danger ml-1 mr-1" role="button">Удалить</a></tr>
             </tr>
             </tbody>
