@@ -29,7 +29,7 @@ public class WorkplaceController {
         return "workplaceList";
     }
 
-    @GetMapping("/room-details/workplaces-create/{id}")
+    @GetMapping("/workplaces-create/{id}")
     public String workplacesAddForm( Workplace workplace,Computer computer, Model model){
         List<Room> rooms = roomRepository.findAll();
         List<Computer> computers = computerRepository.findAll();
@@ -38,6 +38,8 @@ public class WorkplaceController {
         model.addAttribute("computer", computers);
         return "room-details" ;
     }
+
+
 
     @GetMapping("/room-details/workplaces-delete/{id}")
     public String workplaceDelete(@PathVariable Integer id,Workplace workplace, Computer computer){
