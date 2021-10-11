@@ -80,7 +80,6 @@ public class ComputerController {
         model.addAttribute("computerId", id);
         List<Installedsoftware> installedsoftwares = computerRepository.findById(id).get().getInstalledsoftwares();
         model.addAttribute("installedsoftwares", installedsoftwares);
-
         return "computer-details";
     }
 

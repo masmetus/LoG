@@ -41,17 +41,17 @@ public class LogControllers {
         return "redirect:/users";
     }
 
-    @GetMapping("/user-update/{id}")
+    @GetMapping("/userUpdate/{id}")
     public String updateUserForm(@PathVariable("id") Long id, Model model){
         User user = userRepository.findById(id).get();
         List<Role> roles = roleRepository.findAll();
         model.addAttribute("user", user);
         model.addAttribute("pageTitle","Редактировать информацию");
         model.addAttribute("roles", roles);
-        return "/user-update";
+        return "/userUpdate";
     }
 
-    @PostMapping("/user-update")
+    @PostMapping("/userUpdate")
     public String updateUser( User user, Role role){
         userRepository.save(user);
         return "redirect:/users";
