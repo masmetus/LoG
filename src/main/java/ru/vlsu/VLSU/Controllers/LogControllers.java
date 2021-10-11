@@ -48,7 +48,7 @@ public class LogControllers {
         model.addAttribute("user", user);
         model.addAttribute("pageTitle","Редактировать информацию");
         model.addAttribute("roles", roles);
-        return "/userUpdate";
+        return "userUpdate";
     }
 
     @PostMapping("/userUpdate")
