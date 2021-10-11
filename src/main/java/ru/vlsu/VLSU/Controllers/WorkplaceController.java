@@ -30,22 +30,14 @@ public class WorkplaceController {
     }
 
     @GetMapping("/workplaces-create/{id}")
-    public String workplacesAddForm(Workplace workplace,Computer computer, Model model){
+    public String workplacesAddForm( Workplace workplace,Computer computer, Model model){
         List<Room> rooms = roomRepository.findAll();
         List<Computer> computers = computerRepository.findAll();
         //Workplace workplace = new Workplace();
         model.addAttribute("room", rooms);
         model.addAttribute("computer", computers);
-        return "workplaces-create";
+        return "room-details" ;
     }
-
-    @PostMapping("/workplaces-create")
-        public String workplaceAdd(Workplace workplace){
-        workplaceRepository.save(workplace);
-        return "redirect:/workplaceList";
-    }
-
-
 
     @GetMapping("/room-details/workplaces-delete/{id}")
     public String workplaceDelete(@PathVariable Integer id,Workplace workplace, Computer computer){

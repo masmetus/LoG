@@ -90,7 +90,6 @@ public class RoomController {
         model.addAttribute("roomNumber", id);
         model.addAttribute("computers", computerRepository.findByWorkplace(null));
         model.addAttribute("workplace", new Workplace());
-
         return "workplaces-create";
     }
 
