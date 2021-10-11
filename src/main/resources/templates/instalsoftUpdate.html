@@ -18,31 +18,24 @@
         </div>-->
 
 
-        <form th:action="@{/room-details/computer-details/instalsoftUpdate{id}(id=${computerId})}" th:object="${installedsoftware}" method="post">
+        <form th:action="@{/room-details/computer-details/instalsoftUpdate{id}(id=${installedsoftware.id})}" th:object="${installedsoftware}" method="post">
 
             <div class="m-3">
 
 
-                <div class="m-3">
+                <div class="form-group row">
 
-                    <div class="form-group row">
+                    <label class="col-form-label col-sm-4">Название программы:</label>
 
-                        <label class="col-form-label col-sm-4">Название программы:</label>
+                    <div class="col-sm-8">
 
-                        <div class="col-sm-8">
-
-                            <select id = "software" th:field="*{softwareId}" class="form-control" required>
-
-                                <th:block th:each="software : ${softwares}">
-
-                                    <option th:value="${software.getId()}"  th:text="${software.getName() }"></option>
-
-                                </th:block>
-
-                            </select>
-                        </div>
+                        <input readonly id="id"  th:value="${installedsoftware.software.getName()}" class="form-control"/>
 
                     </div>
+
+                </div>
+
+                </div>
 
                     <div class="form-group row">
 
@@ -72,12 +65,9 @@
 
                     </div>
 
+                <div th:unless="${installedsoftware.software == null}">
+                    <button type="submit" class="btn btn-success">Изменить</button>
                 </div>
-
-
-            </div>
-
-            <button type="submit" class="btn btn-success">Обновить</button>
 
         </form>
     </div>

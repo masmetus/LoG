@@ -5,7 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-file=no">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <title>[[${pageTitle}]]</title>
 </head>
@@ -34,23 +35,31 @@
             </thead>
             <tbody>
             <tr th:each="requests: ${requestList}">
-                <div th:switch = ${requests.requestStatus}>
-                <td th:text="${requests.room.getRoomNumber()}"></td>
-                <td th:text="${requests.ID_Computer}"></td>
-                <td th:text="${requests.user.getFullName()}"></td>
-                <td th:text="${requests.Installedsoftware.getSoftware().getName()}"></td>
-                <td th:text="${requests.description_of_the_problem}"></td>
-                <td th:text="${requests.application_date}"></td>
+                <div th:switch=${requests.requestStatus}>
+                    <td th:text="${requests.room.getRoomNumber()}"></td>
+                    <td th:text="${requests.ID_Computer}"></td>
+                    <td th:text="${requests.user.getFullName()}"></td>
+                    <td th:text="${requests.Installedsoftware.getSoftware().getName()}"></td>
+                    <td th:text="${requests.description_of_the_problem}"></td>
+                    <td th:text="${requests.application_date}"></td>
                     <td>
-                        <span th:if = "${requests.requestStatus}">Открыта</span>
-                        <span th:unless = "${requests.requestStatus}">Закрыта</span>
+                        <span th:if="${requests.requestStatus}">Открыта</span>
+                        <span th:unless="${requests.requestStatus}">Закрыта</span>
                     </td>
-                <td th:text="${requests.application_closing_date}"></td>
-                    <td><form method="post" th:case="true"  th:action="@{/closeRequest/{id}(id=${requests.id})}">
-                        <button type="submit" name="submit" value="value" class="btn btn-outline-primary ml-1 mr-1">Закрыть заявку</button>
-                    </form></td>
+                    <td th:text="${requests.application_closing_date}"></td>
+                    <td>
+                        <form method="post" th:case="true" th:action="@{/closeRequest/{id}(id=${requests.id})}">
+                            <button type="submit" name="submit" value="value" class="btn btn-outline-primary ml-1 mr-1">
+                                Закрыть заявку
+                            </button>
+                        </form>
+                    </td>
+
+                    <td>
+                        <a th:case="false" th:href="@{request-delete/{id}(id=${requests.id})}"
+                           class="btn btn-danger ml-1 mr-1" role="button">Удалить</a>
+                    </td>
                 </div>
-                <td><a th:href="@{request-delete/{id}(id=${requests.id})}" class="btn btn-danger ml-1 mr-1" role="button">Удалить</a></td>
             </tr>
             </tbody>
         </table>

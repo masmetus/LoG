@@ -23,7 +23,6 @@ public class UserRep {
     @NotBlank
     private String lastName;
 
-    @NotBlank
     private String phoneNumber;
 
     @NotBlank

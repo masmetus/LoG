@@ -75,7 +75,7 @@ public class ComputerController {
         }
     }
 
-    @GetMapping("room-details/computer-details/{id}")
+    @GetMapping("/room-details/computer-details/{id}")
     public String computerDetails(@PathVariable("id") Integer id, Model model){
         model.addAttribute("computerId", id);
         List<Installedsoftware> installedsoftwares = computerRepository.findById(id).get().getInstalledsoftwares();

@@ -16,7 +16,7 @@
 
 
 <div sec:authorize="hasAnyAuthority('Admin', 'Engineer', 'Teacher', 'Заведующий')" class="container text-center">
-    <div class="container mt-5">
+    < class="container mt-5">
         <h2>Установленное ПО</h2>
         <table class="table">
             <thead>
@@ -47,7 +47,7 @@
                 </div>
 
                 <td><a sec:authorize="hasAnyAuthority('Engineer', 'Admin')" th:href="@{instalsoftUpdate/{id}(id=${installedsoftwares.id})}" class="btn btn-outline-primary ml-1 mr-1" role="button">Редактировать</a></td>
-                <td><a sec:authorize="hasAnyAuthority('Engineer', 'Admin')" th:href="@{installedsoftwares-delete/{id}(id=${installedsoftwares.id})}" class="btn btn-danger ml-1 mr-1" role="button">Удалить</a></tr>
+                <td><a th:case="true" sec:authorize="hasAnyAuthority('Engineer', 'Admin')" th:href="@{installedsoftwares-delete/{id}(id=${installedsoftwares.id})}" class="btn btn-danger ml-1 mr-1" role="button">Удалить</a></tr>
             </tr>
             </tbody>
         </table>

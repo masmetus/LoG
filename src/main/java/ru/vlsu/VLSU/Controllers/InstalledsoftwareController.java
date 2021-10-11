@@ -38,12 +38,13 @@ public class InstalledsoftwareController {
         return "instalsoftUpdate";
     }
 
-    @PostMapping("/room-details/computer-details/instalsoftUpdate")
-    public String instalsoftUpdate(Installedsoftware installedsoftware, Principal principal){
-        installedsoftware.setInstallationDate(new Date(System.currentTimeMillis()));
-        //installedsoftware.setComputer(computerRepository.findById(id).get());
-        installedsoftwareRerository.save(installedsoftware);
-        return "redirect:/room-details/computer-details/3" ;
+    @PostMapping("/room-details/computer-details/instalsoftUpdate/{id}")
+    public String instalsoftUpdate(@PathVariable Integer id, Installedsoftware installedsoftware){
+        Installedsoftware installedsoftwares = installedsoftwareRerository.getById(id);
+        installedsoftwares.setLicenseStart(installedsoftware.getLicenseStart());
+        installedsoftwares.setLicenseEnd(installedsoftware.getLicenseEnd());
+        installedsoftwareRerository.save(installedsoftwares);
+        return "redirect:/Room" ;
     }
 
 }

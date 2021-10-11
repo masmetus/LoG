@@ -11,14 +11,14 @@ public class Request {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "ID_room")
     private Room room;
 
     private Integer ID_Computer;
 
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "installedsoftware_ID")
     private Installedsoftware installedsoftware;
 
@@ -28,7 +28,7 @@ public class Request {
 
     private Date application_closing_date;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "ID_user")
     private User user;
 

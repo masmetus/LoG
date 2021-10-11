@@ -13,11 +13,11 @@ public class Installedsoftware {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "ID_Software")
     private Software software;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "ID_computer")
     private Computer computer;
 
@@ -30,7 +30,7 @@ public class Installedsoftware {
     @Column(name = "ID_Software", insertable = false, updatable = false)
     private Integer softwareId;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "ID_enginere")
     private User user;
 
