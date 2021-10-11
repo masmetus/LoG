@@ -14,7 +14,7 @@
 
 <div th:replace="fragments :: header"></div>
 
-
+<div sec:authorize="hasAnyAuthority('Admin', 'Engineer')" class="container text-center">
     <div class="container mt-5">
         <h2 class="text-center">ПО</h2>
         <table class="table">
@@ -35,6 +35,7 @@
         </table>
     </div>
     <div class="text-center"><a th:href="@{/software/softwareCreate}" class="btn btn-outline-primary ml-2 mr-2" role="button">Добавить новое ПО</a></div>
+</div>
 
 </div>
 </body>

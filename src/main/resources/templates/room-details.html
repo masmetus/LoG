@@ -13,7 +13,6 @@
 
 <div th:replace="fragments :: header"></div>
 
-<!-- <div th:unless="${user.id == null}"></div> -->
 
 <div sec:authorize="hasAnyAuthority('Admin', 'Engineer', 'Teacher', 'Заведующий')" class="container text-center">
     <div class="container mt-5">
@@ -36,7 +35,7 @@
                 <td th:text="${workplaces.Number}"></td>
                 <td th:text="${workplaces.computer.getINV()}"></td>
                 <td><a th:href="@{computer-details/{id}(id=${workplaces.computer.getId()})}" class="btn btn-outline-primary ml-1 mr-1" role="button">Подробнее</a></td>
-                <td><a sec:authorize="hasAnyAuthority('Admin', 'Заведующий')" th:href="@{/room-details/workplaseEdit/{id}(id=${workplaces.id})}" class="btn btn-outline-primary ml-1 mr-1" role="button">Редактировать</a></td>
+              <!-- <td><a sec:authorize="hasAnyAuthority('Admin', 'Заведующий')" th:href="@{/room-details/workplaseEdit/{id}(id=${workplaces.id})}" class="btn btn-outline-primary ml-1 mr-1" role="button">Редактировать</a></td>-->
                 <td><a sec:authorize="hasAnyAuthority('Admin', 'Заведующий')" th:href="@{/room-details/workplaces-delete/{id}(id=${workplaces.id})}" class="btn btn-danger ml-1 mr-1" role="button">Удалить</a></tr>
             </tr>
             </tbody>

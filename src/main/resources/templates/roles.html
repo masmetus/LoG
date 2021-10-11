@@ -21,7 +21,7 @@
             <tbody>
             <tr th:each="role: ${roles}">
                 <td th:text="${role.name}"></td>
-                <td><a th:href="@{role-delete/{id}(id=${role.id})}" class="btn btn-outline-primary ml-2 mr-2" role="button">Удалить</a></tr>
+                <td><a th:href="@{role-delete/{id}(id=${role.id})}" class="btn btn-danger ml-1 mr-1" role="button">Удалить</a></tr>
             </tr>
             </tbody>
         </table>

@@ -17,59 +17,59 @@
 
 <div sec:authorize="hasAnyAuthority('Admin', 'Engineer', 'Teacher', 'Заведующий')" class="container text-center">
     <div class="container mt-5">
-    <h2>Установленное ПО</h2>
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Название программы</th>
-            <th>Дата начала действия лицензии</th>
-            <th>Дата конца действия лицензии</th>
-            <th>Дата установки</th>
-            <th>Статус</th>
-            <th></th>
-            <th></th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="installedsoftwares: ${installedsoftwares}">
-            <div th:switch=${installedsoftwares.WorkStatus}>
-                <td th:text="${installedsoftwares.software.getName()}"></td>
-                <td th:text="${#dates.format(installedsoftwares.LicenseStart, 'dd-MM-yyyy HH:mm')}"></td>
-                <td th:text="${#dates.format(installedsoftwares.LicenseEnd, 'dd-MM-yyyy HH:mm')}"></td>
-                <td th:text="${#dates.format(installedsoftwares.InstallationDate, 'dd-MM-yyyy HH:mm')}"></td>
-                <td>
-                    <span th:if="${installedsoftwares.WorkStatus}">Работает</span>
-                    <span th:unless="${installedsoftwares.WorkStatus}">Не работает</span>
-                </td>
+        <h2>Установленное ПО</h2>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Название программы</th>
+                <th>Дата начала действия лицензии</th>
+                <th>Дата конца действия лицензии</th>
+                <th>Дата установки</th>
+                <th>Статус</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="installedsoftwares: ${installedsoftwares}">
+                <div th:switch=${installedsoftwares.WorkStatus}>
+                    <td th:text="${installedsoftwares.software.getName()}"></td>
+                    <td th:text="${#dates.format(installedsoftwares.LicenseStart, 'dd-MM-yyyy HH:mm')}"></td>
+                    <td th:text="${#dates.format(installedsoftwares.LicenseEnd, 'dd-MM-yyyy HH:mm')}"></td>
+                    <td th:text="${#dates.format(installedsoftwares.InstallationDate, 'dd-MM-yyyy HH:mm')}"></td>
+                    <td>
+                        <span th:if="${installedsoftwares.WorkStatus}">Работает</span>
+                        <span th:unless="${installedsoftwares.WorkStatus}">Не работает</span>
+                    </td>
 
-                <td><a sec:authorize="hasAnyAuthority('Admin', 'Teacher')" th:case="true"
-                       th:href="@{saveRequest/{id}(id=${installedsoftwares.id})}"
-                       class="btn btn-outline-primary ml-1 mr-1" role="button">Неисправность</a></td>
+                    <td><a sec:authorize="hasAnyAuthority('Admin', 'Teacher')" th:case="true"
+                           th:href="@{saveRequest/{id}(id=${installedsoftwares.id})}"
+                           class="btn btn-danger ml-1 mr-1" role="button">Неисправность</a></td>
 
-                <td><a sec:authorize="hasAnyAuthority('Engineer', 'Admin')"
-                       th:href="@{instalsoftUpdate/{id}(id=${installedsoftwares.id})}"
-                       class="btn btn-outline-primary ml-1 mr-1" role="button">Редактировать</a></td>
-                <td>
-                    <a sec:authorize="hasAnyAuthority('Engineer', 'Admin')" th:case="true"
-                       th:href="@{installedsoftwares-delete/{id}(id=${installedsoftwares.id})}"
-                       class="btn btn-danger ml-1 mr-1" role="button">Удалить</a>
-                </td>
-            </div>
+                    <td><a sec:authorize="hasAnyAuthority('Engineer', 'Admin')"
+                           th:href="@{instalsoftUpdate/{id}(id=${installedsoftwares.id})}"
+                           class="btn btn-outline-primary ml-1 mr-1" role="button">Редактировать</a></td>
+                    <td>
+                        <a sec:authorize="hasAnyAuthority('Engineer', 'Admin')"
+                           th:href="@{installedsoftwares-delete/{id}(id=${installedsoftwares.id})}"
+                           th:case="false" class="btn btn-danger ml-1 mr-1" role="button">Удалить</a>
+                    </td>
+                </div>
 
-        </tr>
-        </tr>
-        </tbody>
-    </table>
-</div>
-<div class="text-center">
+            </tr>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center">
 
-    <a sec:authorize="hasAnyAuthority('Engineer', 'Admin')"
-       th:href="@{/room-details/computer-details/installSoft/{id}(id=${computerId})}"
-       class="btn btn-outline-primary ml-2 mr-2" role="button">Установить ПО</a>
-    <!--<a th:href="@{/room-details/{id}(id=${computerId})}" class="btn btn-outline-primary ml-2 mr-2" role="button">К кабинет</a>-->
+        <a sec:authorize="hasAnyAuthority('Engineer', 'Admin')"
+           th:href="@{/room-details/computer-details/installSoft/{id}(id=${computerId})}"
+           class="btn btn-outline-primary ml-2 mr-2" role="button">Установить ПО</a>
+        <!--<a th:href="@{/room-details/{id}(id=${computerId})}" class="btn btn-outline-primary ml-2 mr-2" role="button">К кабинет</a>-->
 
-</div>
+    </div>
 
 </div>
 </body>
