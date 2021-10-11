@@ -100,7 +100,7 @@ public class RoomController {
         workplace.setComputer(computerRepository.findById(workplace.getComputer_id()).get());
         workplace.setId(null);
         workplaceRepository.save(workplace);
-        return "room-details" + id;
+        return roomDetails(room.getId(), model);
     }
 
    /* @GetMapping("/room-details/workplaseEdit/{id}")
