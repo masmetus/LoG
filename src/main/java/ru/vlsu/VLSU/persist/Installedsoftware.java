@@ -36,7 +36,6 @@ public class Installedsoftware {
     @NotBlank
     private User user;
 
-    @NotBlank
     private Date InstallationDate;
 
     @Column(name = "work_status")
