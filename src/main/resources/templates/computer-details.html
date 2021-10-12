@@ -33,7 +33,7 @@
             </thead>
             <tbody>
             <tr th:each="installedsoftwares: ${installedsoftwares}">
-                <div th:if=${installedsoftwares.WorkStatus}>
+                <div th:switch=${installedsoftwares.WorkStatus}>
                     <td th:text="${installedsoftwares.software.getName()}"></td>
                     <td th:text="${#dates.format(installedsoftwares.LicenseStart, 'dd-MM-yyyy HH:mm')}"></td>
                     <td th:text="${#dates.format(installedsoftwares.LicenseEnd, 'dd-MM-yyyy HH:mm')}"></td>
@@ -44,7 +44,7 @@
                     </td>
 
                     <td>
-                        <a sec:authorize="hasAnyAuthority('Admin', 'Teacher')" th:if="true"
+                        <a sec:authorize="hasAnyAuthority('Admin', 'Teacher')" th:case="true"
                            th:href="@{saveRequest/{id}(id=${installedsoftwares.id})}"
                            class="btn btn-danger ml-1 mr-1" role="button">Неисправность</a>
                     </td>
@@ -53,7 +53,7 @@
                            th:href="@{instalsoftUpdate/{id}(id=${installedsoftwares.id})}"
                            class="btn btn-outline-primary ml-1 mr-1" role="button">Редактировать</a></td>
                     <td>
-                        <a sec:authorize="hasAnyAuthority('Engineer', 'Admin')" th:if="true"
+                        <a sec:authorize="hasAnyAuthority('Engineer', 'Admin')" th:if="${installedsoftwares.WorkStatus} == true"
                            th:href="@{installedsoftwares-delete/{id}(id=${installedsoftwares.id})}"
                             class="btn btn-danger ml-1 mr-1" role="button">Удалить</a>
                     </td>
