@@ -1,7 +1,10 @@
 package ru.vlsu.VLSU.persist;
 
 
+import org.hibernate.validator.constraints.UniqueElements;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @Entity
@@ -12,12 +15,13 @@ public class Computer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotBlank
     private Integer INV;
 
     @OneToOne(cascade = CascadeType.ALL ,mappedBy = "computer")
     private Workplace workplace;
 
-
+    @NotBlank
     private boolean isWorking;
 
 

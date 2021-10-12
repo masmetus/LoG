@@ -1,6 +1,7 @@
 package ru.vlsu.VLSU.persist;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 import java.util.Set;
 
@@ -12,8 +13,10 @@ public class Room {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotBlank
     private String RoomNumber;
 
+    //Это вообще бы удалить, но мало ли всё ляжет
     @OneToMany(mappedBy = "room")
     private List<Request> requests;
 

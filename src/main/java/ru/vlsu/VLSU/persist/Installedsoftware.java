@@ -3,6 +3,7 @@ package ru.vlsu.VLSU.persist;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
 @Entity
@@ -32,11 +33,14 @@ public class Installedsoftware {
 
     @ManyToOne
     @JoinColumn(name = "ID_enginere")
+    @NotBlank
     private User user;
 
+    @NotBlank
     private Date InstallationDate;
 
     @Column(name = "work_status")
+    @NotBlank
     private boolean WorkStatus;
 
 

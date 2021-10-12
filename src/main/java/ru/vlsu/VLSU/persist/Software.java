@@ -2,6 +2,7 @@ package ru.vlsu.VLSU.persist;
 
 import javax.persistence.*;
 import javax.swing.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.List;
 
@@ -14,6 +15,7 @@ public class Software {
     private Integer id;
 
     @Size(min = 2)
+    @NotBlank
     private String Name;
 
     @OneToMany(mappedBy = "software", cascade = CascadeType.ALL )
