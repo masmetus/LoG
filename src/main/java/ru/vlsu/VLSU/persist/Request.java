@@ -14,32 +14,27 @@ public class Request {
 
     @ManyToOne
     @JoinColumn(name = "ID_room")
-    @NotBlank
     private Room room;
 
-    @NotBlank
     private Integer ID_Computer;
 
 
     @ManyToOne
     @JoinColumn(name = "installedsoftware_ID")
-    @NotBlank
     private Installedsoftware installedsoftware;
 
-    @NotBlank
+
     private boolean requestStatus;
 
-    @NotBlank
+
     private Date application_date;
 
     private Date application_closing_date;
 
     @ManyToOne
     @JoinColumn(name = "ID_user")
-    @NotBlank
     private User user;
 
-    @NotBlank
     private String description_of_the_problem;
 
 

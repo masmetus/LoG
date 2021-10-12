@@ -1,7 +1,6 @@
 package ru.vlsu.VLSU.persist;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "workplace")
@@ -11,21 +10,17 @@ public class Workplace {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotBlank
     private String Number;
 
     @ManyToOne
     @JoinColumn(name = "id_room")
-    @NotBlank
     private Room room;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "computer_id")
-    @NotBlank
     private Computer computer;
 
     @Column(insertable = false, updatable = false)
-    @NotBlank
     private Integer computer_id;
 
 

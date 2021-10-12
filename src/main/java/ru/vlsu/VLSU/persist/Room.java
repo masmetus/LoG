@@ -13,7 +13,7 @@ public class Room {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotBlank
+
     private String RoomNumber;
 
     //Это вообще бы удалить, но мало ли всё ляжет

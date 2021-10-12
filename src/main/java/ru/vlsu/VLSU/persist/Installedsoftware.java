@@ -33,13 +33,11 @@ public class Installedsoftware {
 
     @ManyToOne
     @JoinColumn(name = "ID_enginere")
-    @NotBlank
     private User user;
 
     private Date InstallationDate;
 
     @Column(name = "work_status")
-    @NotBlank
     private boolean WorkStatus;
 
 
