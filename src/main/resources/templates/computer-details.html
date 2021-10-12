@@ -51,9 +51,9 @@
                            th:href="@{instalsoftUpdate/{id}(id=${installedsoftwares.id})}"
                            class="btn btn-outline-primary ml-1 mr-1" role="button">Редактировать</a></td>
                     <td>
-                        <a sec:authorize="hasAnyAuthority('Engineer', 'Admin')"
+                        <a sec:authorize="hasAnyAuthority('Engineer', 'Admin')" th:case="true"
                            th:href="@{installedsoftwares-delete/{id}(id=${installedsoftwares.id})}"
-                           th:if="true" class="btn btn-danger ml-1 mr-1" role="button">Удалить</a>
+                            class="btn btn-danger ml-1 mr-1" role="button">Удалить</a>
                     </td>
                 </div>
 
